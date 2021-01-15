@@ -14,6 +14,8 @@ import {
   ListGroupItem,
 } from 'reactstrap';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 export default class App extends Component {
   constructor(props){
     super(props)
@@ -55,7 +57,7 @@ export default class App extends Component {
   getSenateMemberData = () => {
     axios({
       method: 'get', //you can set what request you want to be
-      url: '/api/senate',
+      url: BASE_URL + '/api/senate',
       data: {},
     }).then((response) =>{
         this.setState({senateMembers: response.data.results[0].members})
@@ -65,7 +67,7 @@ export default class App extends Component {
   getHouseMemberData = () => {
     axios({
       method: 'get', //you can set what request you want to be
-      url: '/api/house',
+      url: BASE_URL + '/api/house',
       data: {},
     }).then((response) =>{
         this.setState({houseMembers: response.data.results[0].members})
@@ -75,7 +77,7 @@ export default class App extends Component {
   getBillData = () => {
     axios({
       method: 'get', //you can set what request you want to be
-      url: '/api/bills',
+      url: BASE_URL + '/api/bills',
       data: {},
     }).then((response) =>{
       console.log(response);
@@ -87,7 +89,7 @@ export default class App extends Component {
   getDetailedMemberData = (mlink) => {
     axios({
       method: 'get', //you can set what request you want to be
-      url: '/api/member/' + mlink,
+      url: BASE_URL + '/api/member/' + mlink,
       data: {},
     }).then((response) =>{
         this.setState({memberModal: true, activeMember: response.data.results[0]})
@@ -99,7 +101,7 @@ export default class App extends Component {
   getDetailedBillData = (blink) => {
     axios({
       method: 'get', //you can set what request you want to be
-      url: '/api/bills/' + blink,
+      url: BASE_URL + '/api/bills/' + blink,
       data: {},
     }).then((response) =>{
         this.setState({billModal: true, activeBill: response.data.results[0]})
