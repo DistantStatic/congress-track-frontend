@@ -46,7 +46,6 @@ export default class App extends Component {
 }
 
   setActiveMember = (member) => {
-    console.log(member);
     this.getDetailedMemberData(member.id)
   }
 
@@ -80,9 +79,7 @@ export default class App extends Component {
       url: BASE_URL + '/api/bills',
       data: {},
     }).then((response) =>{
-      console.log(response);
       this.setState({bills: response.data.results[0].bills})
-      console.log(this.state.bills);
     })
   }
 
@@ -93,8 +90,6 @@ export default class App extends Component {
       data: {},
     }).then((response) =>{
         this.setState({memberModal: true, activeMember: response.data.results[0]})
-        console.log("HERE");
-        console.log(this.state.activeMember)
     })
   }
 
@@ -105,8 +100,6 @@ export default class App extends Component {
       data: {},
     }).then((response) =>{
         this.setState({billModal: true, activeBill: response.data.results[0]})
-        console.log("HERE");
-        console.log(this.state.activeBill)
     })
   }
 
