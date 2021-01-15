@@ -4,6 +4,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BillModal from './BillModal';
 import MemberModal from './MemberModal';
+import LoadingComp from './LoadingComp';
 import {
   Button,
   Card,
@@ -20,6 +21,7 @@ export default class App extends Component {
   constructor(props){
     super(props)
     this.state = {
+      loading: true,
       senateMembers: [],
       houseMembers: [],
       bills: [],
@@ -46,10 +48,12 @@ export default class App extends Component {
 }
 
   setActiveMember = (member) => {
+    this.setState({loading: true})
     this.getDetailedMemberData(member.id)
   }
 
   setActiveBill = (bill) => {
+    this.setState({loading: true})
     this.getDetailedBillData(bill.bill_slug)
   }
 
@@ -79,7 +83,7 @@ export default class App extends Component {
       url: BASE_URL + '/api/bills',
       data: {},
     }).then((response) =>{
-      this.setState({bills: response.data.results[0].bills})
+      this.setState({loading: false, bills: response.data.results[0].bills})
     })
   }
 
@@ -89,7 +93,7 @@ export default class App extends Component {
       url: BASE_URL + '/api/member/' + mlink,
       data: {},
     }).then((response) =>{
-        this.setState({memberModal: true, activeMember: response.data.results[0]})
+        this.setState({loading: false, memberModal: true, activeMember: response.data.results[0]})
     })
   }
 
@@ -99,7 +103,7 @@ export default class App extends Component {
       url: BASE_URL + '/api/bills/' + blink,
       data: {},
     }).then((response) =>{
-        this.setState({billModal: true, activeBill: response.data.results[0]})
+        this.setState({loading: false, billModal: true, activeBill: response.data.results[0]})
     })
   }
 
@@ -210,6 +214,7 @@ export default class App extends Component {
   render = () => {
     return (
       <div className="App">
+        {this.state.loading ? <LoadingComp /> : null}
         <div className="header">
           <h1 className="title site-title">TrackUS</h1>
           <h5 className="title sub-title text-muted">Keep track of your Representatives in Washington</h5>

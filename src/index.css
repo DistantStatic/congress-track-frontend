@@ -28,6 +28,18 @@ body {
   scrollbar-width: none;  /* Firefox */
 }
 
+.captivate {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(224, 217, 255, 0.644);
+  z-index: 99;
+}
+
+.captivate .container {
+  margin-top: 22em;
+}
+
 .header {
   margin-bottom: 2em;
 }
