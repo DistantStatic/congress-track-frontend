@@ -80,14 +80,10 @@ export default class App extends Component {
   };
 
   searchSenateMember = (a) => {
-    console.log("Searching with this...")
-    console.log(a)
-    console.log(this.state.senateMembers)
     this.state.searchSenate.addDocuments(this.state.senateMembers)
     this.state.searchSenate.addIndex("first_name")
     this.state.searchSenate.addIndex("last_name")
     let result = this.state.searchSenate.search(a)
-    console.log(result);
     if (result.length < 1 ) {
       result = this.state.senateMembers
     }
@@ -95,26 +91,18 @@ export default class App extends Component {
   }
 
   searchHouseMember = (a) => {
-    console.log("Searching with this...")
-    console.log(a)
-    console.log(this.state.houseMembers)
     this.state.searchHouse.addDocuments(this.state.houseMembers)
     this.state.searchHouse.addIndex("first_name")
     this.state.searchHouse.addIndex("last_name")
     let result = this.state.searchHouse.search(a)
-    console.log(result);
     this.setState({renderHouseMembers: result})
   }
   
   searchBills = (a) => {
-    console.log("Searching with this...")
-    console.log(a)
-    console.log(this.state.bills)
     this.state.searchBills.addDocuments(this.state.bills)
     this.state.searchBills.addIndex("title")
     this.state.searchBills.addIndex("bill_slug")
     let result = this.state.searchBills.search(a)
-    console.log(result);
     this.setState({renderBills: result})
   }
 
@@ -177,26 +165,26 @@ export default class App extends Component {
     let toRender = [];
     billList.forEach((bill) => {
       toRender.push(
-        <div className="col-sm-4">
+        <Col sm="2">
         <Card>
           <div className={"card-header " + bill.sponsor_party + "party"}>{bill.bill_id.toUpperCase()}</div>
           <CardTitle>
             <h3>{this.truncate(bill.short_title)}</h3>
           </CardTitle>            
           <CardBody className="my-body">
-            <div className="container">
+            <Container>
             <h5 className="card-title">{"Sponsor(s): " + bill.sponsor_name + " + " + bill.cosponsors}</h5>
             <ul className="list-group list-group-flush">
               <li className="list-group-item"><a href={bill.congressdotgov_url}>{bill.congressdotgov_url}</a></li>
               <li className="list-group-item">{"Last Major Action Date: " + bill.latest_major_action_date}</li>
             </ul>
-            </div>
+            </Container>
           </CardBody>
           <CardFooter>
             <Button onClick={this.setActiveBill.bind(this, bill)}>Find Out More</Button>
           </CardFooter>
         </Card>
-      </div>
+      </Col>
       )
     })
     return (toRender)
@@ -206,7 +194,7 @@ export default class App extends Component {
     let toRender = [];
     memberList.forEach((member) => {
       toRender.push(
-      <Col sm="4">
+      <Col sm="2">
         <Card>
           <div className={"card-header " + member.party + "party"}>{member.title + " | " + member.party + " - " + member.state}</div>
           <div className="card-title-section">
@@ -214,7 +202,7 @@ export default class App extends Component {
             <h1 className="card-title">{member.last_name}</h1>
           </div>            
           <CardBody className="my-body">
-            <div className="container">
+            <Container>
               <ListGroup className="list-group-flush">
                 <ListGroupItem>
                   {"Total Votes: " + member.total_votes + " | Missed: " + member.missed_votes + "(" + member.missed_votes_pct + "%)"}
@@ -229,7 +217,7 @@ export default class App extends Component {
                   {"Phone: " + member.phone}
                 </ListGroupItem>
               </ListGroup>
-            </div>
+            </Container>
           </CardBody>
           <CardFooter>
             <Button onClick={this.setActiveMember.bind(this, member)}>Find Out More</Button>
@@ -311,14 +299,14 @@ export default class App extends Component {
             {this.dataDecider()}
           </div>
         </div>
-        <Container>
-          <div className="main-display scroll-test row">
-                {this.state.pages.senate ? this.state.renderSenateMembers.length > 0 ? this.renderCongressMembers(this.state.renderSenateMembers) : this.renderCongressMembers(this.state.senateMembers) : null}
-                {this.state.pages.house ? this.state.renderSenateMembers.length > 0 ? this.renderCongressMembers(this.state.renderHouseMembers) :  this.renderCongressMembers(this.state.houseMembers) : null}
-                {this.state.pages.bills ? (this.state.renderBills.length > 0 ? this.renderBills(this.state.renderBills) : this.renderBills(this.state.bills)) : null}
-          </div>
-        </Container>
-          
+        <div className="main-display scroll-test row">
+          {this.state.pages.senate ? this.state.renderSenateMembers.length > 0 ? this.renderCongressMembers(this.state.renderSenateMembers) : this.renderCongressMembers(this.state.senateMembers) : null}
+          {this.state.pages.house ? this.state.renderSenateMembers.length > 0 ? this.renderCongressMembers(this.state.renderHouseMembers) :  this.renderCongressMembers(this.state.houseMembers) : null}
+          {this.state.pages.bills ? (this.state.renderBills.length > 0 ? this.renderBills(this.state.renderBills) : this.renderBills(this.state.bills)) : null}
+        </div>
+        <div className="footer">
+          <span>Data sourced from ProPublica</span>
+        </div>
           { this.state.memberModal ? (<MemberModal currentMember={this.state.activeMember} toggle={this.toggleMemberModal}/>) : null }
           { this.state.billModal ? (<BillModal currentBill={this.state.activeBill} toggle={this.toggleBillModal}/>) : null }
       </div>

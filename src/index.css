@@ -1,5 +1,4 @@
 body {
-  background-color: rgba(224, 217, 255, 0.644);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -11,10 +10,8 @@ body {
 .main-display {
   height: 75vh;
   overflow-y:scroll;
-  margin-left:auto;
-  margin-right: auto;
-  border-left: 1px solid rgb(51, 51, 51);
-  border-right: 1px solid rgb(51, 51, 51);
+  margin-left: 2em!important;
+  margin-right: 2em!important;
 }
 
 @media (max-width: 400px) {
@@ -75,6 +72,10 @@ body {
   background-color: #0900d2ba!important;
 }
 
+.IDparty {
+  color:slategray!important;
+}
+
 .card {
   margin-bottom: 1em;
   box-shadow: 0 2px 2px #ccc;
@@ -128,4 +129,11 @@ body {
   background-color: rgba(236, 236, 236, 0.918);    /* color of the scroll thumb */
   border-radius: 20px;       /* roundness of the scroll thumb */
   border: 3px solid rgb(86, 101, 104);  /* creates padding around scroll thumb */
+}
+
+.footer {
+  margin-top:2em;
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
 }
