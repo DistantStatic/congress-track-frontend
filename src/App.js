@@ -165,7 +165,7 @@ export default class App extends Component {
     let toRender = [];
     billList.forEach((bill) => {
       toRender.push(
-        <Col sm="2">
+        <Col sm="12" md="6" lg="4" xl="2">
         <Card>
           <div className={"card-header " + bill.sponsor_party + "party"}>{bill.bill_id.toUpperCase()}</div>
           <CardTitle>
@@ -194,7 +194,7 @@ export default class App extends Component {
     let toRender = [];
     memberList.forEach((member) => {
       toRender.push(
-      <Col sm="2">
+        <Col sm="12" md="6" lg="4" xl="2">
         <Card>
           <div className={"card-header " + member.party + "party"}>{member.title + " | " + member.party + " - " + member.state}</div>
           <div className="card-title-section">
