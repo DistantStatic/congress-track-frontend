@@ -10,7 +10,7 @@ body {
 
 .main-display {
   height: 75vh;
-  overflow-x:scroll;
+  overflow-y:scroll;
   margin-left:auto;
   margin-right: auto;
   border-left: 1px solid rgb(51, 51, 51);
