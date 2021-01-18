@@ -5,7 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import BillModal from './BillModal';
 import MemberModal from './MemberModal';
 import LoadingComp from './LoadingComp';
+import * as JsSearch from 'js-search';
 import {
+  Col,
   Button,
   Card,
   CardBody,
@@ -13,6 +15,19 @@ import {
   CardFooter,
   ListGroup,
   ListGroupItem,
+  Container,
+  Nav,
+  Navbar,
+  NavLink,
+  NavbarBrand,
+  NavbarText,
+  NavItem,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Label,
+  Input
 } from 'reactstrap';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL
@@ -23,8 +38,11 @@ export default class App extends Component {
     this.state = {
       loading: true,
       senateMembers: [],
+      renderSenateMembers: [],
       houseMembers: [],
+      renderHouseMembers: [],
       bills: [],
+      renderBills: [],
       pages: {
         senate: true,
         house: false,
@@ -34,7 +52,14 @@ export default class App extends Component {
       activeBill: {},
       billModal: false,
       memberModal: false,
+      searchSenate: new JsSearch.Search("last_name"),
+      searchHouse: new JsSearch.Search("last_name"),
+      searchBills: new JsSearch.Search("bill_slug")
     }
+    this.state.searchHouse.addIndex("first_name")
+    
+    this.state.searchHouse.addDocuments(this.state.houseMembers)
+    this.state.searchBills.addDocuments(this.state.bills)
   }
 
   componentDidMount = () => {
@@ -45,7 +70,53 @@ export default class App extends Component {
 
   truncate = (str) =>{
     return str.length > 60 ? str.substring(0, 57) + "..." : str;
-}
+  }
+
+  handleChange = (e) => {
+    let { value } = e.target;
+    if (this.state.pages.senate) {this.searchSenateMember(value)}
+    if (this.state.pages.house) {this.searchHouseMember(value)}
+    if (this.state.pages.bills) {this.searchBills(value)}
+  };
+
+  searchSenateMember = (a) => {
+    console.log("Searching with this...")
+    console.log(a)
+    console.log(this.state.senateMembers)
+    this.state.searchSenate.addDocuments(this.state.senateMembers)
+    this.state.searchSenate.addIndex("first_name")
+    this.state.searchSenate.addIndex("last_name")
+    let result = this.state.searchSenate.search(a)
+    console.log(result);
+    if (result.length < 1 ) {
+      result = this.state.senateMembers
+    }
+    this.setState({renderSenateMembers: result})
+  }
+
+  searchHouseMember = (a) => {
+    console.log("Searching with this...")
+    console.log(a)
+    console.log(this.state.houseMembers)
+    this.state.searchHouse.addDocuments(this.state.houseMembers)
+    this.state.searchHouse.addIndex("first_name")
+    this.state.searchHouse.addIndex("last_name")
+    let result = this.state.searchHouse.search(a)
+    console.log(result);
+    this.setState({renderHouseMembers: result})
+  }
+  
+  searchBills = (a) => {
+    console.log("Searching with this...")
+    console.log(a)
+    console.log(this.state.bills)
+    this.state.searchBills.addDocuments(this.state.bills)
+    this.state.searchBills.addIndex("title")
+    this.state.searchBills.addIndex("bill_slug")
+    let result = this.state.searchBills.search(a)
+    console.log(result);
+    this.setState({renderBills: result})
+  }
 
   setActiveMember = (member) => {
     this.setState({loading: true})
@@ -59,9 +130,8 @@ export default class App extends Component {
 
   getSenateMemberData = () => {
     axios({
-      method: 'get', //you can set what request you want to be
+      method: 'get',
       url: BASE_URL + '/api/senate',
-      data: {},
     }).then((response) =>{
         this.setState({senateMembers: response.data.results[0].members})
     })
@@ -69,9 +139,8 @@ export default class App extends Component {
 
   getHouseMemberData = () => {
     axios({
-      method: 'get', //you can set what request you want to be
+      method: 'get', 
       url: BASE_URL + '/api/house',
-      data: {},
     }).then((response) =>{
         this.setState({houseMembers: response.data.results[0].members})
     })
@@ -79,9 +148,8 @@ export default class App extends Component {
 
   getBillData = () => {
     axios({
-      method: 'get', //you can set what request you want to be
+      method: 'get',
       url: BASE_URL + '/api/bills',
-      data: {},
     }).then((response) =>{
       this.setState({loading: false, bills: response.data.results[0].bills})
     })
@@ -89,9 +157,8 @@ export default class App extends Component {
 
   getDetailedMemberData = (mlink) => {
     axios({
-      method: 'get', //you can set what request you want to be
+      method: 'get',
       url: BASE_URL + '/api/member/' + mlink,
-      data: {},
     }).then((response) =>{
         this.setState({loading: false, memberModal: true, activeMember: response.data.results[0]})
     })
@@ -99,9 +166,8 @@ export default class App extends Component {
 
   getDetailedBillData = (blink) => {
     axios({
-      method: 'get', //you can set what request you want to be
+      method: 'get',
       url: BASE_URL + '/api/bills/' + blink,
-      data: {},
     }).then((response) =>{
         this.setState({loading: false, billModal: true, activeBill: response.data.results[0]})
     })
@@ -140,7 +206,7 @@ export default class App extends Component {
     let toRender = [];
     memberList.forEach((member) => {
       toRender.push(
-      <div className="col-sm-4">
+      <Col sm="4">
         <Card>
           <div className={"card-header " + member.party + "party"}>{member.title + " | " + member.party + " - " + member.state}</div>
           <div className="card-title-section">
@@ -169,7 +235,7 @@ export default class App extends Component {
             <Button onClick={this.setActiveMember.bind(this, member)}>Find Out More</Button>
           </CardFooter>
         </Card>
-      </div>
+      </Col>
       )
     })
     return toRender
@@ -189,17 +255,39 @@ export default class App extends Component {
 
   dataDecider = () => {
     return (
-      <ul className="nav">
-        <li className="nav-item">
-          <a onClick={this.displaySenate} className={"nav-link " + ( this.state.pages.senate ? "active" : "")} href="#">Senate</a>
-        </li>
-        <li className="nav-item">
-          <a onClick={this.displayHouse} className={"nav-link " + ( this.state.pages.house ? "active" : "")} href="#">House</a>
-        </li>
-        <li className="nav-item">
-          <a onClick={this.displayBills} className={"nav-link " + ( this.state.pages.bills ? "active" : "")} href="#">Bills</a>
-        </li>
-      </ul>
+      <Navbar light expand="lg">
+        <NavbarBrand href="/">FilterUS</NavbarBrand>
+        <Nav navbar>
+          <UncontrolledDropdown direction="up" nav inNavbar>
+            <DropdownToggle nav caret>
+              { this.state.pages.house ? "House": null }
+              { this.state.pages.senate ? "Senate": null }
+              { this.state.pages.bills ? "Bills": null }
+            </DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem onClick={this.displaySenate}>
+                Senate
+              </DropdownItem>
+              <DropdownItem onClick={this.displayHouse}>
+                House
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem onClick={this.displayBills}>
+                Bills
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+          <NavItem>
+            <Input
+              type="text"
+              autoComplete="off"
+              name="search-bar"
+              onKeyUp={this.handleChange}
+              placeholder="Search..."
+            />
+          </NavItem>
+        </Nav>
+      </Navbar>
     )
   }
 
@@ -219,13 +307,13 @@ export default class App extends Component {
           <h1 className="title site-title">TrackUS</h1>
           <h5 className="title sub-title text-muted">Keep track of your Representatives in Washington</h5>
         </div>
-        <div className="container">
+        <Container>
           <div className="main-display scroll-test row">
-                {this.state.pages.senate ? this.renderCongressMembers(this.state.senateMembers) : ""}
-                {this.state.pages.house ? this.renderCongressMembers(this.state.houseMembers) : ""}
-                {this.state.pages.bills ? this.renderBills(this.state.bills) : ""}
+                {this.state.pages.senate ? this.state.renderSenateMembers.length > 0 ? this.renderCongressMembers(this.state.renderSenateMembers) : this.renderCongressMembers(this.state.senateMembers) : null}
+                {this.state.pages.house ? this.state.renderSenateMembers.length > 0 ? this.renderCongressMembers(this.state.renderHouseMembers) :  this.renderCongressMembers(this.state.houseMembers) : null}
+                {this.state.pages.bills ? (this.state.renderBills.length > 0 ? this.renderBills(this.state.renderBills) : this.renderBills(this.state.bills)) : null}
           </div>
-        </div>
+        </Container>
           <div className="my-footer">
             {this.dataDecider()}
           </div>
