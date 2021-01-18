@@ -255,10 +255,10 @@ export default class App extends Component {
 
   dataDecider = () => {
     return (
-      <Navbar light expand="lg">
-        <NavbarBrand href="/">FilterUS</NavbarBrand>
-        <Nav navbar>
-          <UncontrolledDropdown direction="up" nav inNavbar>
+      <Navbar light expand="sm">
+        <Nav navbar className="my-nav">
+          <NavItem>
+          <UncontrolledDropdown>
             <DropdownToggle nav caret>
               { this.state.pages.house ? "House": null }
               { this.state.pages.senate ? "Senate": null }
@@ -277,6 +277,7 @@ export default class App extends Component {
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
+          </NavItem>
           <NavItem>
             <Input
               type="text"
@@ -306,6 +307,9 @@ export default class App extends Component {
         <div className="header">
           <h1 className="title site-title">TrackUS</h1>
           <h5 className="title sub-title text-muted">Keep track of your Representatives in Washington</h5>
+          <div>
+            {this.dataDecider()}
+          </div>
         </div>
         <Container>
           <div className="main-display scroll-test row">
@@ -314,9 +318,7 @@ export default class App extends Component {
                 {this.state.pages.bills ? (this.state.renderBills.length > 0 ? this.renderBills(this.state.renderBills) : this.renderBills(this.state.bills)) : null}
           </div>
         </Container>
-          <div className="my-footer">
-            {this.dataDecider()}
-          </div>
+          
           { this.state.memberModal ? (<MemberModal currentMember={this.state.activeMember} toggle={this.toggleMemberModal}/>) : null }
           { this.state.billModal ? (<BillModal currentBill={this.state.activeBill} toggle={this.toggleBillModal}/>) : null }
       </div>
