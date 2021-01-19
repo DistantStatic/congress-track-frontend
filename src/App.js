@@ -2,31 +2,20 @@ import './App.css';
 import { Component } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import BillModal from './BillModal';
-import MemberModal from './MemberModal';
-import LoadingComp from './LoadingComp';
+import MemberView from './Views/MembersView';
+import BillView from './Views/BillsView';
+import BillModal from './Modals/BillModal';
+import MemberModal from './Modals/MemberModal';
+import LoadingComp from './Utility/LoadingComp';
 import * as JsSearch from 'js-search';
 import {
-  Col,
-  Button,
-  Card,
-  CardBody,
-  CardTitle,
-  CardFooter,
-  ListGroup,
-  ListGroupItem,
-  Container,
   Nav,
   Navbar,
-  NavLink,
-  NavbarBrand,
-  NavbarText,
   NavItem,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Label,
   Input
 } from 'reactstrap';
 
@@ -66,10 +55,6 @@ export default class App extends Component {
     this.getSenateMemberData();
     this.getHouseMemberData();
     this.getBillData();
-  }
-
-  truncate = (str) =>{
-    return str.length > 60 ? str.substring(0, 57) + "..." : str;
   }
 
   handleChange = (e) => {
@@ -161,74 +146,6 @@ export default class App extends Component {
     })
   }
 
-  renderBills = (billList) => {
-    let toRender = [];
-    billList.forEach((bill) => {
-      toRender.push(
-        <Col sm="12" md="6" lg="4" xl="2">
-        <Card>
-          <div className={"card-header " + bill.sponsor_party + "party"}>{bill.bill_id.toUpperCase()}</div>
-          <CardTitle>
-            <h3>{this.truncate(bill.short_title)}</h3>
-          </CardTitle>            
-          <CardBody className="my-body">
-            <Container>
-            <h5 className="card-title">{"Sponsor(s): " + bill.sponsor_name + " + " + bill.cosponsors}</h5>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item"><a href={bill.congressdotgov_url}>{bill.congressdotgov_url}</a></li>
-              <li className="list-group-item">{"Last Major Action Date: " + bill.latest_major_action_date}</li>
-            </ul>
-            </Container>
-          </CardBody>
-          <CardFooter>
-            <Button onClick={this.setActiveBill.bind(this, bill)}>Find Out More</Button>
-          </CardFooter>
-        </Card>
-      </Col>
-      )
-    })
-    return (toRender)
-  }
-
-  renderCongressMembers = (memberList) => {
-    let toRender = [];
-    memberList.forEach((member) => {
-      toRender.push(
-        <Col sm="12" md="6" lg="4" xl="2">
-        <Card>
-          <div className={"card-header " + member.party + "party"}>{member.title + " | " + member.party + " - " + member.state}</div>
-          <div className="card-title-section">
-            <h1 className="card-title">{member.first_name}</h1>
-            <h1 className="card-title">{member.last_name}</h1>
-          </div>            
-          <CardBody className="my-body">
-            <Container>
-              <ListGroup className="list-group-flush">
-                <ListGroupItem>
-                  {"Total Votes: " + member.total_votes + " | Missed: " + member.missed_votes + "(" + member.missed_votes_pct + "%)"}
-                </ListGroupItem>
-                <ListGroupItem>
-                  {"Next Election: " + member.next_election}
-                </ListGroupItem>
-                <ListGroupItem>
-                  {"Address: " + member.office}
-                </ListGroupItem>
-                <ListGroupItem>
-                  {"Phone: " + member.phone}
-                </ListGroupItem>
-              </ListGroup>
-            </Container>
-          </CardBody>
-          <CardFooter>
-            <Button onClick={this.setActiveMember.bind(this, member)}>Find Out More</Button>
-          </CardFooter>
-        </Card>
-      </Col>
-      )
-    })
-    return toRender
-  }
-
   displaySenate = () => {
     this.setState({pages: {house: false, senate: true, bills: false}})
   }
@@ -300,9 +217,24 @@ export default class App extends Component {
           </div>
         </div>
         <div className="main-display scroll-test row">
-          {this.state.pages.senate ? this.state.renderSenateMembers.length > 0 ? this.renderCongressMembers(this.state.renderSenateMembers) : this.renderCongressMembers(this.state.senateMembers) : null}
-          {this.state.pages.house ? this.state.renderSenateMembers.length > 0 ? this.renderCongressMembers(this.state.renderHouseMembers) :  this.renderCongressMembers(this.state.houseMembers) : null}
-          {this.state.pages.bills ? (this.state.renderBills.length > 0 ? this.renderBills(this.state.renderBills) : this.renderBills(this.state.bills)) : null}
+          {this.state.pages.senate ?  
+            <MemberView 
+              memberList={this.state.renderSenateMembers.length > 0 ? this.state.renderSenateMembers : this.state.senateMembers} 
+              setActiveMember = {this.setActiveMember}
+              />
+            : null}
+          {this.state.pages.house ?  
+            <MemberView 
+              memberList={this.state.renderHouseMembers.length > 0 ? this.state.renderHouseMembers : this.state.HouseMembers} 
+              setActiveMember = {this.setActiveMember}
+              />
+            : null}
+          {this.state.pages.bills ?  
+            <BillView 
+              billList={this.state.renderBills.length > 0 ? this.state.renderBills : this.state.bills} 
+              setActiveBill = {this.setActiveBill}
+              />
+            : null}
         </div>
         <div className="footer">
           <span>Data sourced from ProPublica</span>

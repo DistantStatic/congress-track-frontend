@@ -10,7 +10,6 @@ import {
     ListGroup,
     ListGroupItem,
     ListGroupItemHeading,
-    ListGroupItemText
 } from "reactstrap";
 
 export default class MemberModal extends Component {
