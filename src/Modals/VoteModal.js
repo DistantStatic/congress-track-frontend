@@ -14,15 +14,16 @@ import {
 export default class VoteModal extends Component {
     constructor(props){
         super(props)
-        state = {
-
+        this.state = {
+            "":""
         }
     }
 
-    render = () => {
+    render() {
+        const {toggle} = this.props
         return (
-            <Modal>
-                <ModalHeader>
+            <Modal isOpen={true} toggle={toggle}>
+                <ModalHeader  toggle={toggle} >
                     <h1>VOTE</h1>
                 </ModalHeader>
                 <ModalBody>

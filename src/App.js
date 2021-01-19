@@ -7,6 +7,7 @@ import BillsView from './Views/BillsView';
 import VotesView from './Views/VotesView'
 import BillModal from './Modals/BillModal';
 import MemberModal from './Modals/MemberModal';
+import VoteModal from './Modals/VoteModal';
 import LoadingComp from './Utility/LoadingComp';
 import * as JsSearch from 'js-search';
 import {
@@ -43,8 +44,10 @@ export default class App extends Component {
       },
       activeMember: {},
       activeBill: {},
+      activeVote: {},
       billModal: false,
       memberModal: false,
+      voteModal: false,
       searchSenate: new JsSearch.Search("last_name"),
       searchHouse: new JsSearch.Search("last_name"),
       searchBills: new JsSearch.Search("bill_slug")
@@ -104,6 +107,7 @@ export default class App extends Component {
 
   setActiveVote(vote) {
     this.setState({loading: true})
+    this.getDetailedVoteData(vote.congress, vote.chamber, vote.session, vote.roll_call)
   }
 
   getSenateMemberData() {
@@ -163,6 +167,16 @@ export default class App extends Component {
       url: BASE_URL + '/api/bills/' + blink,
     }).then((response) =>{
         this.setState({loading: false, billModal: true, activeBill: response.data.results[0]})
+    })
+  }
+
+  getDetailedVoteData(congress, chamber, session, roll_call) {
+    if (this.state.loading !== true){ this.setState({loading: true})}
+    axios({
+      method: 'get',
+      url: BASE_URL + '/api/votes/' + congress + '/' + chamber + '/' + session + '/' + roll_call,
+    }).then((response) =>{
+        this.setState({loading: false, voteModal: true, activeVote: response.data.results})
     })
   }
 
@@ -234,6 +248,10 @@ export default class App extends Component {
     this.setState({memberModal: !this.state.memberModal})
   }
 
+  toggleVoteModal() {
+    this.setState({voteModal: !this.state.voteModal})
+  }
+
   render() {
     return (
       <div className="App">
@@ -288,6 +306,12 @@ export default class App extends Component {
             <BillModal 
               currentBill={this.state.activeBill} 
               toggle={this.toggleBillModal.bind(this)}
+              /> 
+            : null }
+          { this.state.voteModal ? 
+            <VoteModal 
+              currentVote={this.state.activeVote} 
+              toggle={this.toggleVoteModal.bind(this)}
               /> 
             : null }
       </div>

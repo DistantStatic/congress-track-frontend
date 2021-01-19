@@ -16,10 +16,10 @@ export default class VoteView extends Component {
   render() {
     let voteList = this.props.voteList
     let toRender = [];
-      voteList.forEach((vote) => {
+      voteList.forEach((vote, index) => {
         toRender.push(
           <Vote
-            key={vote.id}
+            key={index}
             setActiveVote={this.props.setActiveVote}
             vote={vote}
           />
