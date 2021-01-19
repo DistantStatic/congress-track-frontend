@@ -50,7 +50,8 @@ export default class App extends Component {
       voteModal: false,
       searchSenate: new JsSearch.Search("last_name"),
       searchHouse: new JsSearch.Search("last_name"),
-      searchBills: new JsSearch.Search("bill_slug")
+      searchBills: new JsSearch.Search("bill_slug"),
+      searchVotes: new JsSearch.Search("description")
     }
     this.state.searchHouse.addIndex("first_name")
     
@@ -66,6 +67,7 @@ export default class App extends Component {
     if (this.state.pages.senate) {this.searchSenateMember(value)}
     if (this.state.pages.house) {this.searchHouseMember(value)}
     if (this.state.pages.bills) {this.searchBills(value)}
+    if (this.state.pages.votes) {this.searchVotes(value)}
   };
 
   searchSenateMember(a) {
@@ -93,6 +95,13 @@ export default class App extends Component {
     this.state.searchBills.addIndex("bill_slug")
     let result = this.state.searchBills.search(a)
     this.setState({renderBills: result})
+  }
+
+  searchVotes(a) {
+    this.state.searchVotes.addDocuments(this.state.votes)
+    this.state.searchVotes.addIndex("description")
+    let result = this.state.searchVotes.search(a)
+    this.setState({renderVotes: result})
   }
 
   setActiveMember(member) {
