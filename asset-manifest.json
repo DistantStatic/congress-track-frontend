@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/congress-track-frontend/static/css/main.1e1a5263.chunk.css",
-    "main.js": "/congress-track-frontend/static/js/main.71cfc5b3.chunk.js",
-    "main.js.map": "/congress-track-frontend/static/js/main.71cfc5b3.chunk.js.map",
+    "main.js": "/congress-track-frontend/static/js/main.ba258eda.chunk.js",
+    "main.js.map": "/congress-track-frontend/static/js/main.ba258eda.chunk.js.map",
     "runtime-main.js": "/congress-track-frontend/static/js/runtime-main.df17e242.js",
     "runtime-main.js.map": "/congress-track-frontend/static/js/runtime-main.df17e242.js.map",
     "static/css/2.1a02f21c.chunk.css": "/congress-track-frontend/static/css/2.1a02f21c.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.1a02f21c.chunk.css",
     "static/js/2.355b27c9.chunk.js",
     "static/css/main.1e1a5263.chunk.css",
-    "static/js/main.71cfc5b3.chunk.js"
+    "static/js/main.ba258eda.chunk.js"
   ]
 }
