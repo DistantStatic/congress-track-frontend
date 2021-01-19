@@ -10,9 +10,14 @@ import {
   ListGroupItem,
 } from "reactstrap";
 
-export default class VoteModal extends Component {
+export default class MemberModal extends Component {
 
-  render = () => {
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.memberList !== nextProps.memberList
+  }
+
+  render() {
+    console.log(this.props)
     let memberList = this.props.memberList
     let toRender = [];
       memberList.forEach((member) => {

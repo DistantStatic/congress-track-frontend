@@ -2,8 +2,8 @@ import './App.css';
 import { Component } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MemberView from './Views/MembersView';
-import BillView from './Views/BillsView';
+import MembersView from './Views/MembersView';
+import BillsView from './Views/BillsView';
 import BillModal from './Modals/BillModal';
 import MemberModal from './Modals/MemberModal';
 import LoadingComp from './Utility/LoadingComp';
@@ -51,7 +51,7 @@ export default class App extends Component {
     this.state.searchBills.addDocuments(this.state.bills)
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.getSenateMemberData();
     this.getHouseMemberData();
     this.getBillData();
@@ -64,7 +64,7 @@ export default class App extends Component {
     if (this.state.pages.bills) {this.searchBills(value)}
   };
 
-  searchSenateMember = (a) => {
+  searchSenateMember(a) {
     this.state.searchSenate.addDocuments(this.state.senateMembers)
     this.state.searchSenate.addIndex("first_name")
     this.state.searchSenate.addIndex("last_name")
@@ -75,7 +75,7 @@ export default class App extends Component {
     this.setState({renderSenateMembers: result})
   }
 
-  searchHouseMember = (a) => {
+  searchHouseMember(a) {
     this.state.searchHouse.addDocuments(this.state.houseMembers)
     this.state.searchHouse.addIndex("first_name")
     this.state.searchHouse.addIndex("last_name")
@@ -83,7 +83,7 @@ export default class App extends Component {
     this.setState({renderHouseMembers: result})
   }
   
-  searchBills = (a) => {
+  searchBills(a) {
     this.state.searchBills.addDocuments(this.state.bills)
     this.state.searchBills.addIndex("title")
     this.state.searchBills.addIndex("bill_slug")
@@ -91,12 +91,12 @@ export default class App extends Component {
     this.setState({renderBills: result})
   }
 
-  setActiveMember = (member) => {
+  setActiveMember(member) {
     this.setState({loading: true})
     this.getDetailedMemberData(member.id)
   }
 
-  setActiveBill = (bill) => {
+  setActiveBill(bill) {
     this.setState({loading: true})
     this.getDetailedBillData(bill.bill_slug)
   }
@@ -128,7 +128,7 @@ export default class App extends Component {
     })
   }
 
-  getDetailedMemberData = (mlink) => {
+  getDetailedMemberData(mlink) {
     axios({
       method: 'get',
       url: BASE_URL + '/api/member/' + mlink,
@@ -137,7 +137,7 @@ export default class App extends Component {
     })
   }
 
-  getDetailedBillData = (blink) => {
+  getDetailedBillData(blink) {
     axios({
       method: 'get',
       url: BASE_URL + '/api/bills/' + blink,
@@ -146,19 +146,19 @@ export default class App extends Component {
     })
   }
 
-  displaySenate = () => {
+  displaySenate() {
     this.setState({pages: {house: false, senate: true, bills: false}})
   }
   
-  displayHouse = () => {
+  displayHouse() {
     this.setState({pages: {house: true, senate: false, bills: false}})
   }
 
-  displayBills = () => {
+  displayBills() {
     this.setState({pages: {house: false, senate: false, bills: true}})
   }
 
-  dataDecider = () => {
+  dataDecider() {
     return (
       <Navbar light expand="sm">
         <Nav navbar className="my-nav">
@@ -170,14 +170,14 @@ export default class App extends Component {
               { this.state.pages.bills ? "Bills": null }
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem onClick={this.displaySenate}>
+              <DropdownItem onClick={this.displaySenate.bind(this)}>
                 Senate
               </DropdownItem>
-              <DropdownItem onClick={this.displayHouse}>
+              <DropdownItem onClick={this.displayHouse.bind(this)}>
                 House
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem onClick={this.displayBills}>
+              <DropdownItem onClick={this.displayBills.bind(this)}>
                 Bills
               </DropdownItem>
             </DropdownMenu>
@@ -197,15 +197,15 @@ export default class App extends Component {
     )
   }
 
-  toggleBillModal = () => {
+  toggleBillModal() {
     this.setState({billModal: !this.state.billModal})
   }
 
-  toggleMemberModal = () => {
+  toggleMemberModal() {
     this.setState({memberModal: !this.state.memberModal})
   }
 
-  render = () => {
+  render() {
     return (
       <div className="App">
         {this.state.loading ? <LoadingComp /> : null}
@@ -218,29 +218,29 @@ export default class App extends Component {
         </div>
         <div className="main-display scroll-test row">
           {this.state.pages.senate ?  
-            <MemberView 
+            <MembersView 
               memberList={this.state.renderSenateMembers.length > 0 ? this.state.renderSenateMembers : this.state.senateMembers} 
-              setActiveMember = {this.setActiveMember}
+              setActiveMember = {this.setActiveMember.bind(this)}
               />
             : null}
           {this.state.pages.house ?  
-            <MemberView 
-              memberList={this.state.renderHouseMembers.length > 0 ? this.state.renderHouseMembers : this.state.HouseMembers} 
-              setActiveMember = {this.setActiveMember}
+            <MembersView 
+              memberList={this.state.renderHouseMembers.length > 0 ? this.state.renderHouseMembers : this.state.houseMembers} 
+              setActiveMember = {this.setActiveMember.bind(this)}
               />
             : null}
           {this.state.pages.bills ?  
-            <BillView 
+            <BillsView 
               billList={this.state.renderBills.length > 0 ? this.state.renderBills : this.state.bills} 
-              setActiveBill = {this.setActiveBill}
+              setActiveBill = {this.setActiveBill.bind(this)}
               />
             : null}
         </div>
         <div className="footer">
           <span>Data sourced from ProPublica</span>
         </div>
-          { this.state.memberModal ? (<MemberModal currentMember={this.state.activeMember} toggle={this.toggleMemberModal}/>) : null }
-          { this.state.billModal ? (<BillModal currentBill={this.state.activeBill} toggle={this.toggleBillModal}/>) : null }
+          { this.state.memberModal ? (<MemberModal currentMember={this.state.activeMember} toggle={this.toggleMemberModal.bind(this)}/>) : null }
+          { this.state.billModal ? (<BillModal currentBill={this.state.activeBill} toggle={this.toggleBillModal.bind(this)}/>) : null }
       </div>
 
     );

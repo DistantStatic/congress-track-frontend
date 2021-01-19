@@ -11,13 +11,17 @@ import {
     ListGroupItem,
 } from "reactstrap";
 
-export default class VoteModal extends Component {
+export default class BillView extends Component {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.billList !== nextProps.billList
+  }
   
-  truncate = (str) =>{
+  truncate (str) {
     return str.length > 60 ? str.substring(0, 57) + "..." : str;
   }
 
-  render = () => {
+  render() {
     let billList = this.props.billList   
     let toRender = [];
     billList.forEach((bill) => {

@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { Spinner, Container } from 'reactstrap';
 
 export default class MemberModal extends Component {
-    constructor(props){
-        super(props)
-    }
-
-    render = () => {
+    render() {
         return (
             <div className="captivate">
                 <Container>

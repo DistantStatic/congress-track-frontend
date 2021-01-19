@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class VoteView extends Component {
 
-  render = () => {
+  render() {
     let voteList = this.props.voteList
     let toRender = [];
       voteList.forEach((member) => {
