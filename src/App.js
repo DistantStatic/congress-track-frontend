@@ -4,6 +4,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MembersView from './Views/MembersView';
 import BillsView from './Views/BillsView';
+import VotesView from './Views/VotesView'
 import BillModal from './Modals/BillModal';
 import MemberModal from './Modals/MemberModal';
 import LoadingComp from './Utility/LoadingComp';
@@ -32,10 +33,13 @@ export default class App extends Component {
       renderHouseMembers: [],
       bills: [],
       renderBills: [],
+      votes: [],
+      renderVotes: [],
       pages: {
         senate: true,
         house: false,
         bills: false,
+        votes: false,
       },
       activeMember: {},
       activeBill: {},
@@ -52,9 +56,6 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.getSenateMemberData();
-    this.getHouseMemberData();
-    this.getBillData();
   }
 
   handleChange = (e) => {
@@ -101,25 +102,32 @@ export default class App extends Component {
     this.getDetailedBillData(bill.bill_slug)
   }
 
-  getSenateMemberData = () => {
+  setActiveVote(vote) {
+    this.setState({loading: true})
+  }
+
+  getSenateMemberData() {
+    if (this.state.loading !== true){ this.setState({loading: true})}
     axios({
       method: 'get',
       url: BASE_URL + '/api/senate',
     }).then((response) =>{
-        this.setState({senateMembers: response.data.results[0].members})
+        this.setState({loading: false, senateMembers: response.data.results[0].members})
     })
   }
 
-  getHouseMemberData = () => {
+  getHouseMemberData() {
+    if (this.state.loading !== true){ this.setState({loading: true})}
     axios({
       method: 'get', 
       url: BASE_URL + '/api/house',
     }).then((response) =>{
-        this.setState({houseMembers: response.data.results[0].members})
+        this.setState({loading: false, houseMembers: response.data.results[0].members})
     })
   }
 
-  getBillData = () => {
+  getBillData() {
+    if (this.state.loading !== true){ this.setState({loading: true})}
     axios({
       method: 'get',
       url: BASE_URL + '/api/bills',
@@ -128,7 +136,18 @@ export default class App extends Component {
     })
   }
 
+  getVoteData = () => {
+    if (this.state.loading !== true){ this.setState({loading: true})}
+    axios({
+      method: 'get',
+      url: BASE_URL + '/api/votes',
+    }).then((response) =>{
+      this.setState({loading: false, votes: response.data.results.votes})
+    })
+  }
+
   getDetailedMemberData(mlink) {
+    if (this.state.loading !== true){ this.setState({loading: true})}
     axios({
       method: 'get',
       url: BASE_URL + '/api/member/' + mlink,
@@ -138,6 +157,7 @@ export default class App extends Component {
   }
 
   getDetailedBillData(blink) {
+    if (this.state.loading !== true){ this.setState({loading: true})}
     axios({
       method: 'get',
       url: BASE_URL + '/api/bills/' + blink,
@@ -147,16 +167,21 @@ export default class App extends Component {
   }
 
   displaySenate() {
-    this.setState({pages: {house: false, senate: true, bills: false}})
+    this.setState({pages: {house: false, senate: true, bills: false, votes: false}})
   }
   
   displayHouse() {
-    this.setState({pages: {house: true, senate: false, bills: false}})
+    this.setState({pages: {house: true, senate: false, bills: false, votes: false}})
   }
 
   displayBills() {
-    this.setState({pages: {house: false, senate: false, bills: true}})
+    this.setState({pages: {house: false, senate: false, bills: true, votes: false}})
   }
+
+  displayVotes() {
+    this.setState({pages: {house: false, senate: false, bills: false, votes: true}})
+  }
+
 
   dataDecider() {
     return (
@@ -167,7 +192,8 @@ export default class App extends Component {
             <DropdownToggle nav caret>
               { this.state.pages.house ? "House": null }
               { this.state.pages.senate ? "Senate": null }
-              { this.state.pages.bills ? "Bills": null }
+              { this.state.pages.bills ? "Recent Bills ": null }
+              { this.state.pages.votes ? "Recent Votes ": null }
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem onClick={this.displaySenate.bind(this)}>
@@ -178,7 +204,10 @@ export default class App extends Component {
               </DropdownItem>
               <DropdownItem divider />
               <DropdownItem onClick={this.displayBills.bind(this)}>
-                Bills
+                Recent Bills
+              </DropdownItem>
+              <DropdownItem onClick={this.displayVotes.bind(this)}>
+                Recent Votes
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -221,26 +250,46 @@ export default class App extends Component {
             <MembersView 
               memberList={this.state.renderSenateMembers.length > 0 ? this.state.renderSenateMembers : this.state.senateMembers} 
               setActiveMember = {this.setActiveMember.bind(this)}
+              getMemberData = {this.getSenateMemberData.bind(this)}
               />
             : null}
           {this.state.pages.house ?  
             <MembersView 
               memberList={this.state.renderHouseMembers.length > 0 ? this.state.renderHouseMembers : this.state.houseMembers} 
               setActiveMember = {this.setActiveMember.bind(this)}
+              getMemberData = {this.getHouseMemberData.bind(this)}
               />
             : null}
           {this.state.pages.bills ?  
             <BillsView 
               billList={this.state.renderBills.length > 0 ? this.state.renderBills : this.state.bills} 
               setActiveBill = {this.setActiveBill.bind(this)}
+              getBillData = {this.getBillData.bind(this)}
+              />
+            : null}
+          {this.state.pages.votes ?  
+            <VotesView 
+              voteList={this.state.renderVotes.length > 0 ? this.state.renderVotes : this.state.votes} 
+              setActiveVote = {this.setActiveVote.bind(this)}
+              getVoteData = {this.getVoteData.bind(this)}
               />
             : null}
         </div>
         <div className="footer">
           <span>Data sourced from ProPublica</span>
         </div>
-          { this.state.memberModal ? (<MemberModal currentMember={this.state.activeMember} toggle={this.toggleMemberModal.bind(this)}/>) : null }
-          { this.state.billModal ? (<BillModal currentBill={this.state.activeBill} toggle={this.toggleBillModal.bind(this)}/>) : null }
+          { this.state.memberModal ? 
+            <MemberModal 
+              currentMember={this.state.activeMember} 
+              toggle={this.toggleMemberModal.bind(this)}
+                /> 
+            : null }
+          { this.state.billModal ? 
+            <BillModal 
+              currentBill={this.state.activeBill} 
+              toggle={this.toggleBillModal.bind(this)}
+              /> 
+            : null }
       </div>
 
     );

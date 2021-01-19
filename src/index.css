@@ -143,3 +143,11 @@ body {
   margin-right:auto;
   text-align: center;
 }
+
+.red-vote {
+  background-color: red!important;
+}
+
+.green-vote {
+  background-color: green!important;
+}

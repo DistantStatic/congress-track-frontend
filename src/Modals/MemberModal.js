@@ -51,7 +51,7 @@ export default class MemberModal extends Component {
         return ret
     }
 
-    render = () => {
+    render() {
         const {toggle} = this.props
         return (
             <Modal className="member-modal"isOpen={true} toggle={toggle}>
