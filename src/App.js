@@ -185,7 +185,7 @@ export default class App extends Component {
       method: 'get',
       url: BASE_URL + '/api/votes/' + congress + '/' + chamber + '/' + session + '/' + roll_call,
     }).then((response) =>{
-        this.setState({loading: false, voteModal: true, activeVote: response.data.results})
+        this.setState({loading: false, voteModal: true, activeVote: response.data.results.votes.vote})
     })
   }
 
@@ -319,7 +319,7 @@ export default class App extends Component {
             : null }
           { this.state.voteModal ? 
             <VoteModal 
-              currentVote={this.state.activeVote} 
+              vote={this.state.activeVote} 
               toggle={this.toggleVoteModal.bind(this)}
               /> 
             : null }

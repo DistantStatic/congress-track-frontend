@@ -63,6 +63,16 @@ body {
   overflow-y: scroll;
   height: 20em;
 }
+@media (min-width: 576px) {
+  .vote-modal {
+    max-width: 72em!important;
+  }
+  
+}
+
+.vote-modal .modal-body {
+  height: 30em;
+}
 
 .my-nav {
   margin-left: auto;
