@@ -12,7 +12,7 @@ import {
     ListGroupItemText
 } from "reactstrap";
 
-const backgrounds = {
+export const backgrounds = {
   "Passed": "green-vote",
   "Agreed to": "green-vote",
   "Failed": "red-vote",

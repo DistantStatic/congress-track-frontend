@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { backgrounds } from '../Views/Vote'
 import {
     Button,
     Modal,
@@ -91,7 +92,7 @@ export default class VoteModal extends Component {
     let customPalette = ['#5663ff', '#ff4242', '#fa8775', '#ea5f94', '#cd34b5', '#9d02d7', '#0000ff']
     return (
       <Modal className="vote-modal" isOpen={true} toggle={toggle}>
-        <ModalHeader  toggle={toggle} >
+        <ModalHeader className={"" + backgrounds[vote.result]}  toggle={toggle} >
           VOTE: {vote.congress + " | " + vote.session + " - " + vote.roll_call + "  -  " + vote.question}
         </ModalHeader>
         <ModalBody>
@@ -231,6 +232,9 @@ export default class VoteModal extends Component {
             }
         ]}
         />
+        
+        </ModalBody>
+        <ModalFooter>
         <ListGroup className="list-group-flush">
           <ListGroupItem>
             <ListGroupItemHeading>
@@ -252,9 +256,12 @@ export default class VoteModal extends Component {
             </ListGroupItemText>
           </ListGroupItem>
         </ListGroup>
-        </ModalBody>
-        <ModalFooter>
-
+        <Button color="primary" href={vote.url}>
+          Go to vote page
+        </Button>
+        <Button onClick={toggle}>
+          Cancel
+        </Button>
         </ModalFooter>
       </Modal>
     )

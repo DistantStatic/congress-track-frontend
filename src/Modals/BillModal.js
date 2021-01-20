@@ -28,7 +28,7 @@ export default class BillModal extends Component {
         const {toggle} = this.props
         return (
             <Modal isOpen={true} toggle={toggle}>
-                <ModalHeader toggle={toggle}>
+                <ModalHeader className={this.state.currentBill.sponsor_party + "party"} toggle={toggle}>
                     {this.state.currentBill.bill_id.toUpperCase() + " | " + (this.state.currentBill.active ? "Active" : "Inactive")}
                 </ModalHeader>
                 <ModalBody>
