@@ -6,15 +6,12 @@ import {
     ModalHeader,
     ModalBody,
     ModalFooter,
-    Col,
-    Row,
     ListGroup,
     ListGroupItem,
     ListGroupItemHeading,
-    ListGroupItemText
+    ListGroupItemText,
 } from "reactstrap";
 import { ResponsivePie } from '@nivo/pie'
-import VoteView from '../Views/VotesView';
 
 
 
@@ -89,13 +86,13 @@ export default class VoteModal extends Component {
   
   render() {
     const {vote, toggle} = this.props
-    let customPalette = ['#5663ff', '#ff4242', '#fa8775', '#ea5f94', '#cd34b5', '#9d02d7', '#0000ff']
     return (
       <Modal className="vote-modal" isOpen={true} toggle={toggle}>
         <ModalHeader className={"" + backgrounds[vote.result]}  toggle={toggle} >
           VOTE: {vote.congress + " | " + vote.session + " - " + vote.roll_call + "  -  " + vote.question}
         </ModalHeader>
         <ModalBody>
+        <div className="holds-graph">
         <ResponsivePie
         data={this.makeChartData(vote)}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
@@ -232,9 +229,7 @@ export default class VoteModal extends Component {
             }
         ]}
         />
-        
-        </ModalBody>
-        <ModalFooter>
+        </div>
         <ListGroup className="list-group-flush">
           <ListGroupItem>
             <ListGroupItemHeading>
@@ -256,6 +251,8 @@ export default class VoteModal extends Component {
             </ListGroupItemText>
           </ListGroupItem>
         </ListGroup>
+        </ModalBody>
+        <ModalFooter>
         <Button color="primary" href={vote.url}>
           Go to vote page
         </Button>
