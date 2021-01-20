@@ -43,7 +43,6 @@ export default class MemberModal extends Component {
     makeCommitteeList = (clist) => {
         let ret = []
         clist.forEach((entry, index) => {
-            console.log(entry.name)
             ret.push(
                 <li>{entry.name}</li>
             )

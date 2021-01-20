@@ -24,7 +24,6 @@ export default class VoteModal extends Component {
   }
 
   makeChartData(vote) {
-    console.log(vote)
     let data = [
         {
           "id": 'Dem. Yes',

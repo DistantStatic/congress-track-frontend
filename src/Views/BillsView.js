@@ -21,7 +21,6 @@ export default class BillView extends Component {
     let billList = this.props.billList   
     let toRender = [];
     billList.forEach((bill) => {
-      console.log(bill)
       toRender.push(
         <Bill 
           key={bill.bill_id} 

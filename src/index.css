@@ -155,9 +155,9 @@ body {
 }
 
 .red-vote {
-  background-color: red!important;
+  background-color: rgb(236, 20, 20)!important;
 }
 
 .green-vote {
-  background-color: green!important;
+  background-color: rgb(11, 173, 25)!important;
 }
