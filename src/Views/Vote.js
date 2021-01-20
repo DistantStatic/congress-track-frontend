@@ -34,11 +34,7 @@ export default class Vote extends Component {
     return (
       <Col sm="12" md="6" lg="4" xl="2">
         <Card>
-          <div className={"card-header " + backgrounds[vote.result]}>{vote.congress + " | " + vote.session + " - " + vote.roll_call}</div>
-          <div className="card-title-section">
-            <h1 className="card-title">{vote.first_name}</h1>
-            <h1 className="card-title">{vote.last_name}</h1>
-          </div>            
+          <div className={"card-header " + backgrounds[vote.result]}>{vote.congress + " | " + vote.session + " - " + vote.roll_call}</div>          
           <CardBody className="my-body">
             <Container>
               <ListGroup className="list-group-flush">

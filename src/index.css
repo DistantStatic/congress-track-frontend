@@ -71,7 +71,7 @@ body {
 }
 
 .vote-modal .modal-body {
-  height: 30em;
+  min-height: 30em;
 }
 
 .my-nav {
