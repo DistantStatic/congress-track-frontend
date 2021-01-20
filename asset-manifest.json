@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/congress-track-frontend/static/css/main.4c55bebb.chunk.css",
-    "main.js": "/congress-track-frontend/static/js/main.5ba15c3c.chunk.js",
-    "main.js.map": "/congress-track-frontend/static/js/main.5ba15c3c.chunk.js.map",
+    "main.css": "/congress-track-frontend/static/css/main.5cef7d9d.chunk.css",
+    "main.js": "/congress-track-frontend/static/js/main.c74f9fd6.chunk.js",
+    "main.js.map": "/congress-track-frontend/static/js/main.c74f9fd6.chunk.js.map",
     "runtime-main.js": "/congress-track-frontend/static/js/runtime-main.aa6affd0.js",
     "runtime-main.js.map": "/congress-track-frontend/static/js/runtime-main.aa6affd0.js.map",
     "static/css/2.1a02f21c.chunk.css": "/congress-track-frontend/static/css/2.1a02f21c.chunk.css",
@@ -12,14 +12,14 @@
     "static/js/3.c676cacc.chunk.js.map": "/congress-track-frontend/static/js/3.c676cacc.chunk.js.map",
     "index.html": "/congress-track-frontend/index.html",
     "static/css/2.1a02f21c.chunk.css.map": "/congress-track-frontend/static/css/2.1a02f21c.chunk.css.map",
-    "static/css/main.4c55bebb.chunk.css.map": "/congress-track-frontend/static/css/main.4c55bebb.chunk.css.map",
+    "static/css/main.5cef7d9d.chunk.css.map": "/congress-track-frontend/static/css/main.5cef7d9d.chunk.css.map",
     "static/js/2.59018773.chunk.js.LICENSE.txt": "/congress-track-frontend/static/js/2.59018773.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.aa6affd0.js",
     "static/css/2.1a02f21c.chunk.css",
     "static/js/2.59018773.chunk.js",
-    "static/css/main.4c55bebb.chunk.css",
-    "static/js/main.5ba15c3c.chunk.js"
+    "static/css/main.5cef7d9d.chunk.css",
+    "static/js/main.c74f9fd6.chunk.js"
   ]
 }
