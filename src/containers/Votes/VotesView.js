@@ -74,10 +74,12 @@ class VotesView extends Component {
 			        toggle={this.toggleVoteModal}
 			        /> 
 			    : null }
-                <VoteList
-                    voteList={this.state.searchList.length ? this.state.searchList : this.state.votes}
-                    setActiveVote={this.setActiveVote}
-                    />
+                <div className="main-display scroll-test row">
+                    <VoteList
+                        voteList={this.state.searchList.length ? this.state.searchList : this.state.votes}
+                        setActiveVote={this.setActiveVote}
+                        />
+                </div>
             </Aux>
         )
     }

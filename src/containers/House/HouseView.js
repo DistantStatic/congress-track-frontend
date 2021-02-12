@@ -78,10 +78,14 @@ class House extends Component {
                     toggle={this.toggleMemberModal}
                     /> 
                 : null }
-                <MembersList
-                    memberList={this.state.searchList.length ? this.state.searchList : this.state.houseMembers}
-                    setActiveMember={this.setActiveMember}
-                    />
+                <div className="main-display scroll-test row">
+                    <MembersList
+                        memberList={this.state.searchList.length ? 
+                                        this.state.searchList : 
+                                        this.state.houseMembers}
+                        setActiveMember={this.setActiveMember}
+                        />
+                </div>
             </Aux>
         )
     }

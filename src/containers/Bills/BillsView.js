@@ -76,10 +76,14 @@ class BillsView extends Component {
 					toggle={this.toggleBillModal}
 					/> 
 				: null }
-				<BillList
-					billList={this.state.searchList.length ? this.state.searchList : this.state.bills}
-					setActiveBill={this.setActiveBill}
-					/>
+                <div className="main-display scroll-test row">
+					<BillList
+						billList={this.state.searchList.length ? 
+									this.state.searchList : 
+									this.state.bills}
+						setActiveBill={this.setActiveBill}
+						/>
+				</div>
 			</Aux>
 		)
     }

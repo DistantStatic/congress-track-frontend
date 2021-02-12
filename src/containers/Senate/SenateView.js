@@ -80,10 +80,14 @@ class Senate extends Component {
 		            toggle={this.toggleMemberModal}
 			        /> 
 			    : null }
-                <MembersList
-                    memberList={this.state.searchList.length ? this.state.searchList : this.state.senateMembers}
-                    setActiveMember={this.setActiveMember}
-                    />
+                <div className="main-display scroll-test row">
+                    <MembersList
+                        memberList={this.state.searchList.length ? 
+                                        this.state.searchList : 
+                                        this.state.senateMembers}
+                        setActiveMember={this.setActiveMember}
+                        />
+                </div>
             </Aux>
         )
     }

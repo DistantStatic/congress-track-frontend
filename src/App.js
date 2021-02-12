@@ -17,6 +17,7 @@ import BillsView from './containers/Bills/BillsView';
 import VotesView from './containers/Votes/VotesView';
 import HouseView from './containers/House/HouseView';
 import SenateView from './containers/Senate/SenateView';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 export default class App extends Component {
   constructor(props){
@@ -115,80 +116,16 @@ export default class App extends Component {
 	this.setState({pages: {house: false, senate: false, bills: false, votes: true}})
   }
 
-  dataDecider() {
-	return (
-	  <Navbar light expand="sm">
-		<Nav navbar className="my-nav">
-		  <NavItem>
-		  <UncontrolledDropdown>
-			<DropdownToggle nav caret>
-			  { this.state.pages.house ? "House": null }
-			  { this.state.pages.senate ? "Senate": null }
-			  { this.state.pages.bills ? "Recent Bills ": null }
-			  { this.state.pages.votes ? "Recent Votes ": null }
-			</DropdownToggle>
-			<DropdownMenu right>
-			  <DropdownItem onClick={this.displaySenate.bind(this)}>
-				Senate
-			  </DropdownItem>
-			  <DropdownItem onClick={this.displayHouse.bind(this)}>
-				House
-			  </DropdownItem>
-			  <DropdownItem divider />
-			  <DropdownItem onClick={this.displayBills.bind(this)}>
-				Recent Bills
-			  </DropdownItem>
-			  <DropdownItem onClick={this.displayVotes.bind(this)}>
-				Recent Votes
-			  </DropdownItem>
-			</DropdownMenu>
-		  </UncontrolledDropdown>
-		  </NavItem>
-		  <NavItem>
-			<Input
-			  type="text"
-			  autoComplete="off"
-			  name="search-bar"
-			  onKeyUp={this.handleChange}
-			  placeholder="Search..."
-			/>
-		  </NavItem>
-		</Nav>
-	  </Navbar>
-	)
-  }
-
   render() {
 	return (
 	  <div className="App">
-		<div className="header">
-		  <h1 className="title site-title">TrackUS</h1>
-		  <h5 className="title sub-title text-muted">Keep track of your Representatives in Washington</h5>
-		  <div>
-			{this.dataDecider()}
-		  </div>
-		</div>
-		<div className="main-display scroll-test row">
-		  {this.state.pages.senate ?  
-			<SenateView/>
-			: null}
-		  {this.state.pages.house ?  
-			<HouseView />
-			: null}
-		  {this.state.pages.bills ?  
-			<BillsView />
-			: null}
-		  {this.state.pages.votes ?  
-			<VotesView />
-			: null}
-			{/*
-			<Route path="/" component={MembersView} />
-			<Route path="/senate" component={MembersView} />
-			<Route path="/house" component={MembersView} />
-			<Route path="/bills" component={BillsView} />
-			<Route path="/votes" component={VotesView} />
-			*/}
-		</div>
+		  	<BrowserRouter>
+				<Route path="/" exact component={SenateView} />
+				<Route path="/senate" component={SenateView} />
+				<Route path="/house" component={HouseView} />
+				<Route path="/bills" component={BillsView} />
+				<Route path="/votes" component={VotesView} />
+			</BrowserRouter>
 		<div className="footer">
 		  <span>Data sourced from ProPublica</span>
 		</div>
