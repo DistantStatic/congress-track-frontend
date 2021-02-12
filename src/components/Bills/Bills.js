@@ -3,7 +3,7 @@ import Bill from './Bill/Bill';
 
 class BillsView extends Component {
 
-  	shouldComponentUpdate(nextProps, nextState) {
+  	shouldComponentUpdate(nextProps, _) {
     	return this.props.billList !== nextProps.billList
   	}
   

@@ -3,14 +3,8 @@ import Vote from './Vote/Vote';
 
 export default class VoteView extends Component {
 
-  	shouldComponentUpdate(nextProps, nextState) {
+  	shouldComponentUpdate(nextProps, _) {
     	return this.props.voteList !== nextProps.voteList
-  	}
-
-  	componentDidMount() {
-    	if (this.props.voteList.length < 1){
-      	this.props.getVoteData()
-    	}
   	}
 
   	render() {
