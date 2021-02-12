@@ -12,7 +12,7 @@ class App extends Component {
   	render() {
 		return (
 	  		<div className="App">
-		  		<BrowserRouter basemname={`/${process.env.PUBLIC_URL}/congress-app-frontend`}>
+		  		<BrowserRouter basemname={`/${process.env.PUBLIC_URL}`}>
 					<Route path="/" exact component={SenateView} />
 					<Route path="/senate" component={SenateView} />
 					<Route path="/house" component={HouseView} />
