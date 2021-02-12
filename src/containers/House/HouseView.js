@@ -6,6 +6,8 @@ import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
 
+import * as JsSearch from 'js-search';
+
 class House extends Component {
 
     state = {
@@ -13,6 +15,8 @@ class House extends Component {
         houseMembers: [],
         loading: false,
         memberModal: false,
+        searchList: [],
+        searchHouse: new JsSearch.Search("last_name"),
     }
 
     componentDidMount() {
@@ -46,6 +50,18 @@ class House extends Component {
 
     toggleMemberModal = () => {
         this.setState({memberModal: !this.state.memberModal})
+    }
+
+    searchHouseMember = (a) => {
+        const search = this.state.searchHouse
+        search.addDocuments(this.state.houseMembers)
+        search.addIndex("first_name")
+        search.addIndex("last_name")
+        let result = search.search(a)
+        if (result.length < 1 ) {
+            result = this.state.senateMembers
+        }
+        this.setState({searchList: result})
     }
 
     render() {

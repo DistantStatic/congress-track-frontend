@@ -6,13 +6,17 @@ import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
 
+import * as JsSearch from 'js-search';
+
 class BillsView extends Component {
 
     state = {
 		bills: [],
 		activeBill: {},
 		billModal: false,
-		loading: false
+		loading: false,
+		searchList: [],
+		searchBills: new JsSearch.Search("bill_slug"),
     }
 
     componentDidMount() {
@@ -46,6 +50,15 @@ class BillsView extends Component {
 
 	toggleBillModal = () => {
 		this.setState({billModal: !this.state.billModal})
+	}
+  
+	searchBills = (a) => {
+		const search = this.state.searchBills
+	  	search.addDocuments(this.state.bills)
+	  	search.searchBills.addIndex("title")
+	  	search.searchBills.addIndex("bill_slug")
+	  	const result = search.search(a)
+	  	this.setState({searchList: result})
 	}
 
     render() {

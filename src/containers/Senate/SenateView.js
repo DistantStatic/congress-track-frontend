@@ -6,11 +6,17 @@ import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
 
+import * as JsSearch from 'js-search';
+
 class Senate extends Component {
     
     state = {
+        activeMember: {},
         senateMembers: [],
-        loading: false
+        loading: false,
+        memberModal: false,
+        searchList: [],
+        searchSenate: new JsSearch.Search("last_name"),
     }
 
     componentDidMount() {
@@ -44,6 +50,18 @@ class Senate extends Component {
 
     toggleMemberModal = () => {
         this.setState({memberModal: !this.state.memberModal})
+    }
+
+    searchSenateMember = (a) => {
+        const search = this.state.searchSenate;
+        search.addDocuments(this.state.senateMembers)
+        search.addIndex("first_name")
+        search.addIndex("last_name")
+        let result = search.search(a)
+        if (result.length < 1 ) {
+            result = this.state.senateMembers
+        }
+        this.setState({searchList: result})
     }
 
     render() {

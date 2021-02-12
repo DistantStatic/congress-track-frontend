@@ -6,6 +6,8 @@ import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
 
+import * as JsSearch from 'js-search';
+
 class VotesView extends Component {
     
     state = {
@@ -13,7 +15,8 @@ class VotesView extends Component {
         activeVote: {},
         voteModal: false,
         loading: false,
-
+        searchList: [],
+        searchVotes: new JsSearch.Search("description")
     }
 
     componentDidMount() {
@@ -47,6 +50,14 @@ class VotesView extends Component {
 
     toggleVoteModal = () => {
         this.setState({voteModal: !this.state.voteModal})
+    }
+
+    searchVotes(a) {
+        const search = this.state.searchVotes
+        search.addDocuments(this.state.votes)
+        search.addIndex("description")
+        const result = search.search(a)
+        this.setState({searchList: result})
     }
 
     render() {
