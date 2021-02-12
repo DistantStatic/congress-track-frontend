@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { backgrounds } from '../Views/Vote'
+import { backgrounds } from '../components/Votes/Vote/Vote'
 import {
     Button,
     Modal,
