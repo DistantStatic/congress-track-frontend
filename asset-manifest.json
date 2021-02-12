@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/congress-track-frontend/static/css/main.0e30fac1.chunk.css",
-    "main.js": "/congress-track-frontend/static/js/main.0767a330.chunk.js",
-    "main.js.map": "/congress-track-frontend/static/js/main.0767a330.chunk.js.map",
+    "main.js": "/congress-track-frontend/static/js/main.e4e88681.chunk.js",
+    "main.js.map": "/congress-track-frontend/static/js/main.e4e88681.chunk.js.map",
     "runtime-main.js": "/congress-track-frontend/static/js/runtime-main.b8f923da.js",
     "runtime-main.js.map": "/congress-track-frontend/static/js/runtime-main.b8f923da.js.map",
     "static/css/2.1a02f21c.chunk.css": "/congress-track-frontend/static/css/2.1a02f21c.chunk.css",
-    "static/js/2.21615e8e.chunk.js": "/congress-track-frontend/static/js/2.21615e8e.chunk.js",
-    "static/js/2.21615e8e.chunk.js.map": "/congress-track-frontend/static/js/2.21615e8e.chunk.js.map",
+    "static/js/2.67fe8dde.chunk.js": "/congress-track-frontend/static/js/2.67fe8dde.chunk.js",
+    "static/js/2.67fe8dde.chunk.js.map": "/congress-track-frontend/static/js/2.67fe8dde.chunk.js.map",
     "static/js/3.c937477c.chunk.js": "/congress-track-frontend/static/js/3.c937477c.chunk.js",
     "static/js/3.c937477c.chunk.js.map": "/congress-track-frontend/static/js/3.c937477c.chunk.js.map",
     "index.html": "/congress-track-frontend/index.html",
     "static/css/2.1a02f21c.chunk.css.map": "/congress-track-frontend/static/css/2.1a02f21c.chunk.css.map",
     "static/css/main.0e30fac1.chunk.css.map": "/congress-track-frontend/static/css/main.0e30fac1.chunk.css.map",
-    "static/js/2.21615e8e.chunk.js.LICENSE.txt": "/congress-track-frontend/static/js/2.21615e8e.chunk.js.LICENSE.txt"
+    "static/js/2.67fe8dde.chunk.js.LICENSE.txt": "/congress-track-frontend/static/js/2.67fe8dde.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b8f923da.js",
     "static/css/2.1a02f21c.chunk.css",
-    "static/js/2.21615e8e.chunk.js",
+    "static/js/2.67fe8dde.chunk.js",
     "static/css/main.0e30fac1.chunk.css",
-    "static/js/main.0767a330.chunk.js"
+    "static/js/main.e4e88681.chunk.js"
   ]
 }
