@@ -8,6 +8,7 @@ import {
     DropdownItem,
     Input
   } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const navBar = (props) => {
     let handleChange = (e) => {
@@ -28,27 +29,27 @@ const navBar = (props) => {
 	            	    	    { props.page }
 	            	    	</DropdownToggle>
 	            	    	<DropdownMenu right>
-                                <a href="/senate">
+                                <Link to={"/senate"}>
                                     <DropdownItem>
 	            	    	    	    Senate
 	            	    	        </DropdownItem>
-                                </a>
-                                <a href="/house">
+                                </Link>
+                                <Link to={"/house"}>
 	            	    	        <DropdownItem>
 	            	    	    	    House
 	            	    	        </DropdownItem>
-                                </a>
+                                </Link>
 	            	    	    <DropdownItem divider />
-	            	    	    <a href="/bills">
+	            	    	    <Link to="/bills">
                                     <DropdownItem >
 	            	    	    	    Recent Bills
 	            	    	        </DropdownItem>
-                                </a>
-	            	    	    <a href="/votes">
+                                </Link>
+	            	    	    <Link to="/votes">
 	            	    	        <DropdownItem >
                                         Recent Votes
 	            	    	        </DropdownItem>
-                                </a>
+                                </Link>
 	            	    	</DropdownMenu>
 	            	    </UncontrolledDropdown>
 	            	    </NavItem>
