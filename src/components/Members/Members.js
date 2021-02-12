@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Member from '../containers/Members/Member/Member';
+import Member from './Member/Member';
 
-class MembersView extends Component {
+class MembersList extends Component {
 
 	shouldComponentUpdate(nextProps, _) {
 		return this.props.memberList !== nextProps.memberList
@@ -9,14 +9,14 @@ class MembersView extends Component {
 
 	render() {
 		const memberList = this.props.memberList
-		return memberList.map((member) => {
+		return memberList.map((member) => (
 			<Member 
 				 key= {member.id}
 				 member={member}
 				 setActiveMember={this.props.setActiveMember}
 			/>
-		})
+		))
 	}
 }
 
-export default MembersView
+export default MembersList

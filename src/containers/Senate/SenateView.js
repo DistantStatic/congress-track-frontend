@@ -1,11 +1,16 @@
-import MembersViews from '../../components/Members/Members';
+import { Component } from 'react';
+
+import MembersList from '../../components/Members/Members';
+import MemberModal from '../../modals/MemberModal';
 import Aux from '../../hoc/Aux';
+
+import axios from '../../axios-instances/axios-backend';
 
 class Senate extends Component {
     
     state = {
-        senateMembers = [],
-        loading = false
+        senateMembers: [],
+        loading: false
     }
 
     componentDidMount() {
@@ -21,7 +26,7 @@ class Senate extends Component {
         if (this.state.loading !== true){ this.setState({loading: true})}
         axios({
             method: 'get',
-            url: BASE_URL + '/api/senate',
+            url: '/api/senate',
         }).then((response) =>{
             this.setState({loading: false, senateMembers: response.data.results[0].members})
         })
@@ -31,7 +36,7 @@ class Senate extends Component {
         if (this.state.loading !== true){ this.setState({loading: true})}
         axios({
             method: 'get',
-            url: BASE_URL + '/api/member/' + mlink,
+            url: '/api/member/' + mlink,
         }).then((response) =>{
             this.setState({loading: false, memberModal: true, activeMember: response.data.results[0]})
         })
@@ -50,7 +55,7 @@ class Senate extends Component {
 			        toggle={this.toggleMemberModal}
 				/> 
 			: null }
-            <MembersViews 
+            <MembersList
                 memberList={this.state.senateMembers}
                 setActiveMember={this.setActiveMember}
                 chamber="senate" 

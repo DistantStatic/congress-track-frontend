@@ -18,8 +18,6 @@ import VotesView from './containers/Votes/VotesView';
 import HouseView from './containers/House/HouseView';
 import SenateView from './containers/Senate/SenateView';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL
-
 export default class App extends Component {
   constructor(props){
 	super(props)

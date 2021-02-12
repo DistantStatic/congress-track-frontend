@@ -1,5 +1,10 @@
+import { Component } from 'react';
+
 import BillList from '../../components/Bills/Bills';
+import BillModal from '../../modals/BillModal';
 import Aux from '../../hoc/Aux';
+
+import axios from '../../axios-instances/axios-backend';
 
 class BillsView extends Component {
 
@@ -23,7 +28,7 @@ class BillsView extends Component {
 		if (this.state.loading !== true){ this.setState({loading: true})}
 		axios({
 		  	method: 'get',
-		  	url: BASE_URL + '/api/bills',
+		  	url: '/api/bills',
 		}).then((response) =>{
 		  	this.setState({loading: false, bills: response.data.results[0].bills})
 		})
@@ -33,7 +38,7 @@ class BillsView extends Component {
 		if (this.state.loading !== true){ this.setState({loading: true})}
 		axios({
 		  	method: 'get',
-		  	url: BASE_URL + '/api/bills/' + blink,
+		  	url: '/api/bills/' + blink,
 		}).then((response) =>{
 			this.setState({loading: false, billModal: true, activeBill: response.data.results[0]})
 		})

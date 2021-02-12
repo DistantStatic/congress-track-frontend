@@ -15,12 +15,12 @@ export default class VoteView extends Component {
 
   	render() {
     	const voteList = this.props.voteList
-      	return voteList.map((vote) => {
+      	return voteList.map((vote) => (
         	<Vote
             	setActiveVote={this.props.setActiveVote}
             	vote={vote}
           	/>
-      	})
+		))
     	
   	}
 }

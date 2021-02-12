@@ -1,5 +1,10 @@
-import VoteList from '../../components/Votes/Votes'
+import { Component } from 'react';
+
+import VoteList from '../../components/Votes/Votes';
+import VoteModal from '../../modals/VoteModal';
 import Aux from '../../hoc/Aux';
+
+import axios from '../../axios-instances/axios-backend';
 
 class VotesView extends Component {
     
@@ -24,7 +29,7 @@ class VotesView extends Component {
         if (this.state.loading !== true){ this.setState({loading: true})}
         axios({
             method: 'get',
-            url: BASE_URL + '/api/votes',
+            url: '/api/votes',
         }).then((response) =>{
             this.setState({loading: false, votes: response.data.results.votes})
         })
@@ -34,7 +39,7 @@ class VotesView extends Component {
         if (this.state.loading !== true){ this.setState({loading: true})}
         axios({
             method: 'get',
-            url: BASE_URL + '/api/votes/' + congress + '/' + chamber + '/' + session + '/' + roll_call,
+            url: '/api/votes/' + congress + '/' + chamber + '/' + session + '/' + roll_call,
         }).then((response) =>{
             this.setState({loading: false, voteModal: true, activeVote: response.data.results.votes.vote})
         })

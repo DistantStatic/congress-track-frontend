@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Bill from '../containers/Bills/Bill/Bill';
+import Bill from './Bill/Bill';
 
 class BillsView extends Component {
 
@@ -13,13 +13,13 @@ class BillsView extends Component {
 
   	render() {
     	const billList = this.props.billList
-    	return billList.map((bill) => {
+    	return billList.map((bill) => (
         	<Bill 
           		key={bill.bill_id} 
           		bill={bill} 
           		setActiveBill={this.props.setActiveBill}
         	/>
-		})
+		))
  	}
 }
 

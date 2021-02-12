@@ -1,5 +1,10 @@
-import MembersViews from '../../components/Members/Members';
+import { Component } from 'react';
+
+import MembersList from '../../components/Members/Members';
+import MemberModal from '../../modals/MemberModal';
 import Aux from '../../hoc/Aux';
+
+import axios from '../../axios-instances/axios-backend';
 
 class House extends Component {
 
@@ -23,7 +28,7 @@ class House extends Component {
         if (this.state.loading !== true){ this.setState({loading: true})}
         axios({
             method: 'get', 
-            url: BASE_URL + '/api/house',
+            url: '/api/house',
         }).then((response) =>{
             this.setState({loading: false, houseMembers: response.data.results[0].members})
         })
@@ -33,7 +38,7 @@ class House extends Component {
         if (this.state.loading !== true){ this.setState({loading: true})}
         axios({
             method: 'get',
-            url: BASE_URL + '/api/member/' + mlink,
+            url: '/api/member/' + mlink,
         }).then((response) =>{
             this.setState({loading: false, memberModal: true, activeMember: response.data.results[0]})
         })
@@ -52,7 +57,7 @@ class House extends Component {
                   toggle={this.toggleMemberModal}
                     /> 
                 : null }
-            <MembersViews 
+            <MembersList
                 memberList={this.state.houseMembers} 
                 setActiveMember={this.setActiveMember}
                 chamber="house"
