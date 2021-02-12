@@ -3,6 +3,7 @@ import { Component } from 'react';
 import MembersList from '../../components/Members/Members';
 import MemberModal from '../../modals/MemberModal';
 import Navigation from '../../utility/Navigation/Navigation';
+import Loading from '../../utility/Loading/LoadingComp';
 import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
@@ -16,7 +17,7 @@ class Senate extends Component {
         senateMembers: [],
         loading: false,
         memberModal: false,
-        searchList: [],
+        searchList: null,
         searchSenate: new JsSearch.Search("last_name"),
     }
 
@@ -70,6 +71,7 @@ class Senate extends Component {
     render() {
         return (
             <Aux>
+                {!this.state.senateMembers.length ? <Loading /> : null}
                 <Navigation 
                     page="Senate"
                     search={this.searchSenateMember}
@@ -82,7 +84,7 @@ class Senate extends Component {
 			    : null }
                 <div className="main-display scroll-test row">
                     <MembersList
-                        memberList={this.state.searchList.length ? 
+                        memberList={this.state.searchList ? 
                                         this.state.searchList : 
                                         this.state.senateMembers}
                         setActiveMember={this.setActiveMember}

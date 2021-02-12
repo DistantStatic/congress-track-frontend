@@ -3,6 +3,7 @@ import { Component } from 'react';
 import MembersList from '../../components/Members/Members';
 import MemberModal from '../../modals/MemberModal';
 import Navigation from '../../utility/Navigation/Navigation';
+import Loading from '../../utility/Loading/LoadingComp';
 import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
@@ -16,7 +17,7 @@ class House extends Component {
         houseMembers: [],
         loading: false,
         memberModal: false,
-        searchList: [],
+        searchList: null,
         searchHouse: new JsSearch.Search("last_name"),
     }
 
@@ -68,6 +69,7 @@ class House extends Component {
     render() {
         return (
             <Aux>
+                {!this.state.houseMembers.length ? <Loading /> : null}
                 <Navigation 
                     page="House"
                     search={this.searchHouseMember}
@@ -80,7 +82,7 @@ class House extends Component {
                 : null }
                 <div className="main-display scroll-test row">
                     <MembersList
-                        memberList={this.state.searchList.length ? 
+                        memberList={this.state.searchList ? 
                                         this.state.searchList : 
                                         this.state.houseMembers}
                         setActiveMember={this.setActiveMember}

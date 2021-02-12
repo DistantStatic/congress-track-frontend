@@ -3,6 +3,7 @@ import { Component } from 'react';
 import BillList from '../../components/Bills/Bills';
 import BillModal from '../../modals/BillModal';
 import Navigation from '../../utility/Navigation/Navigation';
+import Loading from '../../utility/Loading/LoadingComp';
 import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
@@ -17,7 +18,7 @@ class BillsView extends Component {
 		bills: [],
 		billModal: false,
 		loading: false,
-		searchList: [],
+		searchList: null,
 		searchBills: new JsSearch.Search("bill_slug"),
     }
 
@@ -57,8 +58,8 @@ class BillsView extends Component {
 	searchBills = (a) => {
 		const search = this.state.searchBills
 	  	search.addDocuments(this.state.bills)
-	  	search.searchBills.addIndex("title")
-	  	search.searchBills.addIndex("bill_slug")
+	  	search.addIndex("title")
+	  	search.addIndex("bill_slug")
 	  	const result = search.search(a)
 	  	this.setState({searchList: result})
 	}
@@ -66,6 +67,7 @@ class BillsView extends Component {
     render() {
         return (
 			<Aux>
+				{!this.state.bills.length ? <Loading /> : null}
 				<Navigation
 					page="Bills"
 					search={this.searchBills}
@@ -78,7 +80,7 @@ class BillsView extends Component {
 				: null }
                 <div className="main-display scroll-test row">
 					<BillList
-						billList={this.state.searchList.length ? 
+						billList={this.state.searchList ? 
 									this.state.searchList : 
 									this.state.bills}
 						setActiveBill={this.setActiveBill}

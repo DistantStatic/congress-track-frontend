@@ -3,6 +3,7 @@ import { Component } from 'react';
 import VoteList from '../../components/Votes/Votes';
 import VoteModal from '../../modals/VoteModal';
 import Navigation from '../../utility/Navigation/Navigation';
+import Loading from '../../utility/Loading/LoadingComp';
 import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
@@ -16,7 +17,7 @@ class VotesView extends Component {
         activeVote: {},
         voteModal: false,
         loading: false,
-        searchList: [],
+        searchList: null,
         searchVotes: new JsSearch.Search("description")
     }
 
@@ -64,6 +65,7 @@ class VotesView extends Component {
     render() {
         return (
             <Aux>
+                {!this.state.votes.length ? <Loading /> : null}
                 <Navigation
                     page="Votes"
                     search={this.searchVotes}
@@ -76,7 +78,9 @@ class VotesView extends Component {
 			    : null }
                 <div className="main-display scroll-test row">
                     <VoteList
-                        voteList={this.state.searchList.length ? this.state.searchList : this.state.votes}
+                        voteList={this.state.searchList ? 
+                                    this.state.searchList : 
+                                    this.state.votes}
                         setActiveVote={this.setActiveVote}
                         />
                 </div>
