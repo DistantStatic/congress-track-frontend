@@ -2,17 +2,19 @@ import { Component } from 'react';
 
 import BillList from '../../components/Bills/Bills';
 import BillModal from '../../modals/BillModal';
+import Navigation from '../../utility/Navigation/Navigation';
 import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
 
 import * as JsSearch from 'js-search';
 
+
 class BillsView extends Component {
 
     state = {
-		bills: [],
 		activeBill: {},
+		bills: [],
 		billModal: false,
 		loading: false,
 		searchList: [],
@@ -64,6 +66,10 @@ class BillsView extends Component {
     render() {
         return (
 			<Aux>
+				<Navigation
+					page="Bills"
+					search={this.searchBills}
+					/>
 				{ this.state.billModal ? 
 				<BillModal 
 					currentBill={this.state.activeBill} 
@@ -71,7 +77,8 @@ class BillsView extends Component {
 					/> 
 				: null }
 				<BillList
-					billList={this.state.bills}
+					billList={this.state.searchList.length ? this.state.searchList : this.state.bills}
+					setActiveBill={this.setActiveBill}
 					/>
 			</Aux>
 		)

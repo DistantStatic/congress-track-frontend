@@ -2,6 +2,7 @@ import { Component } from 'react';
 
 import VoteList from '../../components/Votes/Votes';
 import VoteModal from '../../modals/VoteModal';
+import Navigation from '../../utility/Navigation/Navigation';
 import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
@@ -52,7 +53,7 @@ class VotesView extends Component {
         this.setState({voteModal: !this.state.voteModal})
     }
 
-    searchVotes(a) {
+    searchVotes = (a) => {
         const search = this.state.searchVotes
         search.addDocuments(this.state.votes)
         search.addIndex("description")
@@ -63,6 +64,10 @@ class VotesView extends Component {
     render() {
         return (
             <Aux>
+                <Navigation
+                    page="Votes"
+                    search={this.searchVotes}
+                    />
                 { this.state.voteModal ? 
 			    <VoteModal 
 			        vote={this.state.activeVote} 
@@ -70,7 +75,7 @@ class VotesView extends Component {
 			        /> 
 			    : null }
                 <VoteList
-                    voteList={this.state.voteList}
+                    voteList={this.state.searchList.length ? this.state.searchList : this.state.votes}
                     setActiveVote={this.setActiveVote}
                     />
             </Aux>

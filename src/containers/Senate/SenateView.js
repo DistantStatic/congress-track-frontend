@@ -2,6 +2,7 @@ import { Component } from 'react';
 
 import MembersList from '../../components/Members/Members';
 import MemberModal from '../../modals/MemberModal';
+import Navigation from '../../utility/Navigation/Navigation';
 import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
@@ -53,11 +54,13 @@ class Senate extends Component {
     }
 
     searchSenateMember = (a) => {
+        console.log(a);
         const search = this.state.searchSenate;
         search.addDocuments(this.state.senateMembers)
         search.addIndex("first_name")
         search.addIndex("last_name")
         let result = search.search(a)
+        console.log(result);
         if (result.length < 1 ) {
             result = this.state.senateMembers
         }
@@ -67,17 +70,20 @@ class Senate extends Component {
     render() {
         return (
             <Aux>
+                <Navigation 
+                    page="Senate"
+                    search={this.searchSenateMember}
+                    />
                 { this.state.memberModal ? 
-			        <MemberModal 
+			    <MemberModal 
 			        currentMember={this.state.activeMember} 
-			        toggle={this.toggleMemberModal}
-				/> 
-			: null }
-            <MembersList
-                memberList={this.state.senateMembers}
-                setActiveMember={this.setActiveMember}
-                chamber="senate" 
-                />
+		            toggle={this.toggleMemberModal}
+			        /> 
+			    : null }
+                <MembersList
+                    memberList={this.state.searchList.length ? this.state.searchList : this.state.senateMembers}
+                    setActiveMember={this.setActiveMember}
+                    />
             </Aux>
         )
     }

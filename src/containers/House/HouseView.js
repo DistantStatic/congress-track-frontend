@@ -2,6 +2,7 @@ import { Component } from 'react';
 
 import MembersList from '../../components/Members/Members';
 import MemberModal from '../../modals/MemberModal';
+import Navigation from '../../utility/Navigation/Navigation';
 import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
@@ -67,17 +68,20 @@ class House extends Component {
     render() {
         return (
             <Aux>
-            { this.state.memberModal ? 
+                <Navigation 
+                    page="House"
+                    search={this.searchHouseMember}
+                    />
+                { this.state.memberModal ? 
                 <MemberModal 
-                  currentMember={this.state.activeMember} 
-                  toggle={this.toggleMemberModal}
+                    currentMember={this.state.activeMember} 
+                    toggle={this.toggleMemberModal}
                     /> 
                 : null }
-            <MembersList
-                memberList={this.state.houseMembers} 
-                setActiveMember={this.setActiveMember}
-                chamber="house"
-                />
+                <MembersList
+                    memberList={this.state.searchList.length ? this.state.searchList : this.state.houseMembers}
+                    setActiveMember={this.setActiveMember}
+                    />
             </Aux>
         )
     }
