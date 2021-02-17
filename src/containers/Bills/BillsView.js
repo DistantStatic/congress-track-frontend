@@ -60,7 +60,10 @@ class BillsView extends Component {
 	  	search.addDocuments(this.state.bills)
 	  	search.addIndex("title")
 	  	search.addIndex("bill_slug")
-	  	const result = search.search(a)
+		let result = search.search(a)
+		if (result.length < 1 ) {
+			result = this.state.senateMembers
+		}
 	  	this.setState({searchList: result})
 	}
 

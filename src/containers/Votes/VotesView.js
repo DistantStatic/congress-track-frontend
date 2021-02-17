@@ -58,7 +58,10 @@ class VotesView extends Component {
         const search = this.state.searchVotes
         search.addDocuments(this.state.votes)
         search.addIndex("description")
-        const result = search.search(a)
+        let result = search.search(a)
+        if (result.length < 1 ) {
+            result = this.state.senateMembers
+        }
         this.setState({searchList: result})
     }
 

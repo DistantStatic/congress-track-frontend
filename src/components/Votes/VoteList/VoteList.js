@@ -11,6 +11,7 @@ export default class VoteView extends Component {
     	const voteList = this.props.voteList
       	return voteList.map((vote) => (
         	<VoteCard
+				key={`${vote.congress}-${vote.session}-${vote.roll_call}`}
             	setActiveVote={this.props.setActiveVote}
             	vote={vote}
           	/>
