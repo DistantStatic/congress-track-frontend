@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import VoteList from '../../components/Votes/Votes';
+import VoteList from '../../components/Votes/VoteList/VoteList';
 import VoteModal from '../../modals/VoteModal';
 import Navigation from '../../utility/Navigation/Navigation';
 import Loading from '../../utility/Loading/LoadingComp';

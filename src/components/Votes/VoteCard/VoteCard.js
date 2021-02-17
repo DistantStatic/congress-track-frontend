@@ -16,7 +16,18 @@ export const backgrounds = {
   "Passed": "green-vote",
   "Agreed to": "green-vote",
   "Failed": "red-vote",
-  "Motion Rejected": "red-vote"
+  "Motion Rejected": "red-vote",
+  "Motion Agreed to": "green-vote",
+  "Not Guilty": "red-vote",
+  "Guilty": "green-vote",
+  "Resolution Agreed to": "green-vote",
+  "Resolution Rejected": "red-vote",
+  "Concurrent Resolution Agreed to": "green-vote",
+  "Concurrent Resolution Rejected": "red-vote",
+  "Amendment Agreed to": "green-vote",
+  "Amendment Rejected": "red-vote",
+  "Nomination Confirmed": "green-vote",
+  "Nomination Rejected": "red-vote"
 }
 
 export default class Vote extends Component {
@@ -40,7 +51,7 @@ export default class Vote extends Component {
               <ListGroup className="list-group-flush">
                 <ListGroupItem>
                   <ListGroupItemHeading>
-                    {this.truncate(vote.description)}
+                  {vote.description.length > 1 ? this.truncate(vote.description) : this.truncate(vote.question_text)}
                   </ListGroupItemHeading>
                       { this.hasData(vote.bill) ? <ListGroupItemText>{vote.bill.number}</ListGroupItemText> : null }
                       { this.hasData(vote.amendment) ? <ListGroupItemText>{vote.amendment.number}</ListGroupItemText> : null }

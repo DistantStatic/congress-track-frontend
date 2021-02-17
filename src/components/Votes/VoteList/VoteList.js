@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Vote from './Vote/Vote';
+import VoteCard from '../VoteCard/VoteCard';
 
 export default class VoteView extends Component {
 
@@ -10,7 +10,7 @@ export default class VoteView extends Component {
   	render() {
     	const voteList = this.props.voteList
       	return voteList.map((vote) => (
-        	<Vote
+        	<VoteCard
             	setActiveVote={this.props.setActiveVote}
             	vote={vote}
           	/>
