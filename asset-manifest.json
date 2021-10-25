@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/congress-track-frontend/static/css/main.6decb5d7.chunk.css",
-    "main.js": "/congress-track-frontend/static/js/main.ef2d098b.chunk.js",
-    "main.js.map": "/congress-track-frontend/static/js/main.ef2d098b.chunk.js.map",
+    "main.css": "/congress-track-frontend/static/css/main.d43b756d.chunk.css",
+    "main.js": "/congress-track-frontend/static/js/main.9b13ed4c.chunk.js",
+    "main.js.map": "/congress-track-frontend/static/js/main.9b13ed4c.chunk.js.map",
     "runtime-main.js": "/congress-track-frontend/static/js/runtime-main.201a6621.js",
     "runtime-main.js.map": "/congress-track-frontend/static/js/runtime-main.201a6621.js.map",
     "static/css/2.081f420c.chunk.css": "/congress-track-frontend/static/css/2.081f420c.chunk.css",
-    "static/js/2.b5803fe3.chunk.js": "/congress-track-frontend/static/js/2.b5803fe3.chunk.js",
-    "static/js/2.b5803fe3.chunk.js.map": "/congress-track-frontend/static/js/2.b5803fe3.chunk.js.map",
+    "static/js/2.5e305791.chunk.js": "/congress-track-frontend/static/js/2.5e305791.chunk.js",
+    "static/js/2.5e305791.chunk.js.map": "/congress-track-frontend/static/js/2.5e305791.chunk.js.map",
     "static/js/3.33b716c0.chunk.js": "/congress-track-frontend/static/js/3.33b716c0.chunk.js",
     "static/js/3.33b716c0.chunk.js.map": "/congress-track-frontend/static/js/3.33b716c0.chunk.js.map",
     "index.html": "/congress-track-frontend/index.html",
     "static/css/2.081f420c.chunk.css.map": "/congress-track-frontend/static/css/2.081f420c.chunk.css.map",
-    "static/css/main.6decb5d7.chunk.css.map": "/congress-track-frontend/static/css/main.6decb5d7.chunk.css.map",
-    "static/js/2.b5803fe3.chunk.js.LICENSE.txt": "/congress-track-frontend/static/js/2.b5803fe3.chunk.js.LICENSE.txt",
+    "static/css/main.d43b756d.chunk.css.map": "/congress-track-frontend/static/css/main.d43b756d.chunk.css.map",
+    "static/js/2.5e305791.chunk.js.LICENSE.txt": "/congress-track-frontend/static/js/2.5e305791.chunk.js.LICENSE.txt",
     "static/media/App.css": "/congress-track-frontend/static/media/background.2e1d17cf.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.201a6621.js",
     "static/css/2.081f420c.chunk.css",
-    "static/js/2.b5803fe3.chunk.js",
-    "static/css/main.6decb5d7.chunk.css",
-    "static/js/main.ef2d098b.chunk.js"
+    "static/js/2.5e305791.chunk.js",
+    "static/css/main.d43b756d.chunk.css",
+    "static/js/main.9b13ed4c.chunk.js"
   ]
 }
