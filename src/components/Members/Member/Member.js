@@ -25,17 +25,17 @@ export default class Member extends Component {
           </div>            
           <CardBody className="my-body">
             <Container>
-              <ListGroup className="list-group-flush">
-                <ListGroupItem>
+              <ListGroup variant="flush">
+                <ListGroupItem className={styles.custList}>
                   {"Total Votes: " + member.total_votes + " | Missed: " + member.missed_votes + "(" + member.missed_votes_pct + "%)"}
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem className={styles.custList}>
                   {"Next Election: " + member.next_election}
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem className={styles.custList}>
                   {"Address: " + member.office}
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem className={styles.custList}>
                   {"Phone: " + member.phone}
                 </ListGroupItem>
               </ListGroup>
