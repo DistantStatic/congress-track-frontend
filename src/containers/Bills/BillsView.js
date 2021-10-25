@@ -4,7 +4,6 @@ import BillList from '../../components/Bills/Bills';
 import BillModal from '../../modals/BillModal';
 import Navigation from '../../utility/Navigation/Navigation';
 import Loading from '../../utility/Loading/LoadingComp';
-import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
 
@@ -69,7 +68,7 @@ class BillsView extends Component {
 
     render() {
         return (
-			<Aux>
+			<>
 				{!this.state.bills.length ? <Loading /> : null}
 				<Navigation
 					page="Bills"
@@ -89,7 +88,7 @@ class BillsView extends Component {
 						setActiveBill={this.setActiveBill}
 						/>
 				</div>
-			</Aux>
+			</>
 		)
     }
 }

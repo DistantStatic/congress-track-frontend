@@ -11,6 +11,7 @@ import {
     ListGroupItemHeading,
     ListGroupItemText
 } from "reactstrap";
+import styles from './VoteCard.module.css';
 
 export const backgrounds = {
   "Passed": "green-vote",
@@ -27,7 +28,9 @@ export const backgrounds = {
   "Amendment Agreed to": "green-vote",
   "Amendment Rejected": "red-vote",
   "Nomination Confirmed": "green-vote",
-  "Nomination Rejected": "red-vote"
+  "Nomination Rejected": "red-vote",
+  "Cloture Motion Agreed to": "green-vote",
+  "Cloture on the Motion to Proceed Rejected": "red-vote"
 }
 
 export default class Vote extends Component {
@@ -44,7 +47,7 @@ export default class Vote extends Component {
     let vote = this.props.vote
     return (
       <Col sm="12" md="6" lg="4" xl="2">
-        <Card>
+        <Card className={styles.card}>
           <div className={"card-header " + backgrounds[vote.result]}>{vote.congress + " | " + vote.session + " - " + vote.roll_call}</div>          
           <CardBody className="my-body">
             <Container>

@@ -9,6 +9,7 @@ import {
     Input
   } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import styles from './Navigation.module.css';
 
 const navBar = (props) => {
     let handleChange = (e) => {
@@ -17,18 +18,22 @@ const navBar = (props) => {
     };
 
 	return (
-        <div className="header">
+        <div className={styles.custNav}>
 		    <h1 className="title site-title">TrackUS</h1>
 		    <h5 className="title sub-title text-muted">Keep track of your Representatives in Washington</h5>
 		    <div>
 	            <Navbar light expand="sm">
-	            	<Nav navbar className="my-nav">
+	            	<Nav navbar className={styles.searchBar}>
 	            	    <NavItem>
 	            	    <UncontrolledDropdown>
-	            	    	<DropdownToggle nav caret>
+	            	    	<DropdownToggle 
+								nav 
+								caret
+								className={styles.drop}
+								> 
 	            	    	    { props.page }
 	            	    	</DropdownToggle>
-	            	    	<DropdownMenu right>
+	            	    	<DropdownMenu right >
                                 <Link to={"/senate"}>
                                     <DropdownItem>
 	            	    	    	    Senate

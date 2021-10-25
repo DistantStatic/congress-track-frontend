@@ -4,7 +4,6 @@ import VoteList from '../../components/Votes/VoteList/VoteList';
 import VoteModal from '../../modals/VoteModal';
 import Navigation from '../../utility/Navigation/Navigation';
 import Loading from '../../utility/Loading/LoadingComp';
-import Aux from '../../hoc/Aux';
 
 import axios from '../../axios-instances/axios-backend';
 
@@ -67,7 +66,7 @@ class VotesView extends Component {
 
     render() {
         return (
-            <Aux>
+            <>
                 {!this.state.votes.length ? <Loading /> : null}
                 <Navigation
                     page="Votes"
@@ -87,7 +86,7 @@ class VotesView extends Component {
                         setActiveVote={this.setActiveVote}
                         />
                 </div>
-            </Aux>
+            </>
         )
     }
 

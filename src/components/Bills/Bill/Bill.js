@@ -10,6 +10,7 @@ import {
     ListGroup,
     ListGroupItem,
 } from "reactstrap";
+import styles from './Bill.module.css';
 
 export default class Bill extends Component {
 
@@ -21,7 +22,7 @@ export default class Bill extends Component {
     let bill = this.props.bill
     return (
       <Col sm="12" md="6" lg="4" xl="2">
-        <Card>
+        <Card className={styles.card}>
           <div className={"card-header " + bill.sponsor_party + "party"}>{bill.bill_id.toUpperCase()}</div>
           <CardTitle>
             <h3>{this.truncate(bill.short_title)}</h3>

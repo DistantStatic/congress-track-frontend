@@ -9,6 +9,7 @@ import {
   ListGroup,
   ListGroupItem,
 } from "reactstrap";
+import styles from './Member.module.css';
 
 export default class Member extends Component {
 
@@ -16,7 +17,7 @@ export default class Member extends Component {
     let member = this.props.member
     return (
       <Col sm="12" md="6" lg="4" xl="2">
-        <Card>
+        <Card className={styles.card}>
           <div className={"card-header " + member.party + "party"}>{member.title + " | " + member.party + " - " + member.state}</div>
           <div className="card-title-section">
             <h1 className="card-title">{member.first_name}</h1>
