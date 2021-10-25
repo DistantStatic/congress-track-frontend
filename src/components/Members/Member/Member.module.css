@@ -1,4 +1,9 @@
 .card {
     border: none;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(19, 21, 22, 0.9);
+	color: rgba(216, 212, 207, 1);
+}
+
+.custList {
+    background-color: rgba(19, 21, 22, 0.9)!important;
 }

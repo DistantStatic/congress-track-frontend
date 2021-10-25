@@ -52,7 +52,7 @@ export default class Vote extends Component {
           <CardBody className="my-body">
             <Container>
               <ListGroup className="list-group-flush">
-                <ListGroupItem>
+                <ListGroupItem className={styles.custList}>
                   <ListGroupItemHeading>
                   {vote.description.length > 1 ? this.truncate(vote.description) : this.truncate(vote.question_text)}
                   </ListGroupItemHeading>
@@ -60,17 +60,17 @@ export default class Vote extends Component {
                       { this.hasData(vote.amendment) ? <ListGroupItemText>{vote.amendment.number}</ListGroupItemText> : null }
                       <ListGroupItemText>{vote.question}</ListGroupItemText>
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem className={styles.custList}>
                   <ListGroupItemHeading>
                     {"Total Votes"}
                   </ListGroupItemHeading>
                   <p>{"Yes: " + vote.total.yes + " | No: " + vote.total.no}</p> 
                   <p>{"Present: " + vote.total.present + " | Not Voting: " + vote.total.not_voting}</p>
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem className={styles.custList}>
                   {"Date: " + vote.date + " - " + vote.time}
                 </ListGroupItem>
-                <ListGroupItem>
+                <ListGroupItem className={styles.custList}>
                   {"Result: " + vote.result}
                 </ListGroupItem>
               </ListGroup>

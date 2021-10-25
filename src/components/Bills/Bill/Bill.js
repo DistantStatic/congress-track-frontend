@@ -30,9 +30,9 @@ export default class Bill extends Component {
           <CardBody className="my-body">
             <Container>
               <h5 className="card-title">{"Sponsor(s): " + bill.sponsor_name + " + " + bill.cosponsors}</h5>
-              <ListGroup className="list-group-flush">
-                <ListGroupItem><a href={bill.congressdotgov_url}>{bill.congressdotgov_url}</a></ListGroupItem>
-                <ListGroupItem>{"Last Major Action Date: " + bill.latest_major_action_date}</ListGroupItem>
+              <ListGroup variant="flush">
+                <ListGroupItem className={styles.custList}><a href={bill.congressdotgov_url}>{bill.congressdotgov_url}</a></ListGroupItem>
+                <ListGroupItem className={styles.custList}>{"Last Major Action Date: " + bill.latest_major_action_date}</ListGroupItem>
               </ListGroup>
             </Container>
           </CardBody>
