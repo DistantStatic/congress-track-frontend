@@ -68,7 +68,7 @@ class House extends Component {
     render() {
         return (
             <>
-                {!this.state.houseMembers.length ? <Loading /> : null}
+                {this.state.loading ? <Loading /> : null}
                 <Navigation 
                     page="House"
                     search={this.searchHouseMember}

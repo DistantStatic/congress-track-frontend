@@ -67,7 +67,7 @@ class VotesView extends Component {
     render() {
         return (
             <>
-                {!this.state.votes.length ? <Loading /> : null}
+                {this.state.loading ? <Loading /> : null}
                 <Navigation
                     page="Votes"
                     search={this.searchVotes}

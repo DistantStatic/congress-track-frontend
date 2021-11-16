@@ -72,9 +72,13 @@ export default class VoteModal extends Component {
   render() {
     const {vote, show, hide} = this.props
     return (
-      <Modal className="vote-modal" show={show} onHide={hide}>
+      <Modal
+        dialogClassName="cust-modal"
+        show={show}
+        onHide={hide}>
         <Modal.Header className={"" + backgrounds[vote.result]} >
           VOTE: {vote.congress + " | " + vote.session + " - " + vote.roll_call + "  -  " + vote.question}
+                    <Button variant="danger" onClick={hide}>X</Button>
         </Modal.Header>
         <Modal.Body>
         <VotePie vote={vote}/>

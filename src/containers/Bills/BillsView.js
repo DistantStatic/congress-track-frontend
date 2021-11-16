@@ -69,7 +69,7 @@ class BillsView extends Component {
     render() {
         return (
 			<>
-				{!this.state.bills.length ? <Loading /> : null}
+				{this.state.loading ? <Loading /> : null}
 				<Navigation
 					page="Bills"
 					search={this.searchBills}

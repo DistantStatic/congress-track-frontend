@@ -21,9 +21,13 @@ export default class BillModal extends Component {
     render = () => {
         const { show, hide } = this.props
         return (
-            <Modal show={show} onHide={hide}>
+            <Modal
+                dialogClassName="cust-modal"
+                show={show}
+                onHide={hide}>
                 <Modal.Header className={this.state.currentBill.sponsor_party + "party"}>
                     {this.state.currentBill.bill_id.toUpperCase() + " | " + (this.state.currentBill.active ? "Active" : "Inactive")}
+                    <Button variant="danger" onClick={hide}>X</Button>
                 </Modal.Header>
                 <Modal.Body>
                     <ListGroup>

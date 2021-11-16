@@ -47,9 +47,13 @@ export default class MemberModal extends Component {
     render() {
         const { show, hide } = this.props
         return (
-            <Modal className="member-modal" show={show} onHide={hide}>
+            <Modal
+                dialogClassName="cust-modal" 
+                show={show} 
+                onHide={hide}>
                 <Modal.Header className={this.state.currentMember.roles[0].party + "party"}>
                     {this.state.currentMember.roles[0].title + " " + this.state.currentMember.first_name + " " + this.state.currentMember.last_name + " | " + this.state.currentMember.roles[0].party + " - " + this.state.currentMember.roles[0].state}
+                    <Button variant="danger" onClick={hide} style={{paddingBottom: '0.5em'}}><span>x</span></Button>
                 </Modal.Header>
                 <Modal.Body>
                     <ListGroup>

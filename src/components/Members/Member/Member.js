@@ -18,8 +18,8 @@ export default class Member extends Component {
         <Card className={styles.card}>
           <div className={"card-header " + member.party + "party"}>{member.title + " | " + member.party + " - " + member.state}</div>
           <div className="card-title-section">
-            <h1 className="card-title">{member.first_name}</h1>
-            <h1 className="card-title">{member.last_name}</h1>
+            <h3 className="card-title">{member.first_name}</h3>
+            <h3 className="card-title">{member.last_name}</h3>
           </div>            
           <Card.Body className="my-body">
             <Container>

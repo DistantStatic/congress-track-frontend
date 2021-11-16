@@ -22,7 +22,7 @@ export default class Bill extends Component {
         <Card className={styles.card}>
           <div className={"card-header " + bill.sponsor_party + "party"}>{bill.bill_id.toUpperCase()}</div>
           <Card.Title>
-            <h3>{this.truncate(bill.short_title)}</h3>
+            <span>{this.truncate(bill.short_title)}</span>
           </Card.Title>            
           <Card.Body className="my-body">
             <Container>
