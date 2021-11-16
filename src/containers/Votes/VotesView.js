@@ -49,8 +49,8 @@ class VotesView extends Component {
         })
     }
 
-    toggleVoteModal = () => {
-        this.setState({voteModal: !this.state.voteModal})
+    hideVoteModal = () => {
+        this.setState({voteModal: false})
     }
 
     searchVotes = (a) => {
@@ -74,8 +74,9 @@ class VotesView extends Component {
                     />
                 { this.state.voteModal ? 
 			    <VoteModal 
-			        vote={this.state.activeVote} 
-			        toggle={this.toggleVoteModal}
+			        vote={this.state.activeVote}
+                    show={this.state.voteModal}
+                    hide={this.hideVoteModal}
 			        /> 
 			    : null }
                 <div className="main-display scroll-test row">

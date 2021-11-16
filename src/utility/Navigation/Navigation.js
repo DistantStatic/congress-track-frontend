@@ -1,13 +1,9 @@
 import {
     Nav,
     Navbar,
-    NavItem,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    Input
-  } from 'reactstrap';
+    Dropdown,
+	FormControl
+  } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './Navigation.module.css';
 
@@ -22,51 +18,48 @@ const navBar = (props) => {
 		    <h1 className="title site-title">TrackUS</h1>
 		    <h5 className="title sub-title text-muted">Keep track of your Representatives in Washington</h5>
 		    <div>
-	            <Navbar light expand="sm">
+	            <Navbar expand="sm">
 	            	<Nav navbar className={styles.searchBar}>
-	            	    <NavItem>
-	            	    <UncontrolledDropdown>
-	            	    	<DropdownToggle 
-								nav 
-								caret
-								className={styles.drop}
+	            	    <Nav.Item>
+	            	    <Dropdown menuVariant="Dark">
+	            	    	<Dropdown.Toggle variant="dark"
 								> 
 	            	    	    { props.page }
-	            	    	</DropdownToggle>
-	            	    	<DropdownMenu right >
+	            	    	</Dropdown.Toggle>
+	            	    	<Dropdown.Menu variant="dark">
                                 <Link to={"/senate"}>
-                                    <DropdownItem>
+                                    <Dropdown.Item href="#/senate">
 	            	    	    	    Senate
-	            	    	        </DropdownItem>
+	            	    	        </Dropdown.Item>
                                 </Link>
                                 <Link to={"/house"}>
-	            	    	        <DropdownItem>
+	            	    	        <Dropdown.Item href="#/house">
 	            	    	    	    House
-	            	    	        </DropdownItem>
+	            	    	        </Dropdown.Item>
                                 </Link>
-	            	    	    <DropdownItem divider />
+	            	    	    <Dropdown.Item divider />
 	            	    	    <Link to="/bills">
-                                    <DropdownItem >
+                                    <Dropdown.Item href="#/bills" >
 	            	    	    	    Recent Bills
-	            	    	        </DropdownItem>
+	            	    	        </Dropdown.Item>
                                 </Link>
 	            	    	    <Link to="/votes">
-	            	    	        <DropdownItem >
+	            	    	        <Dropdown.Item href="#/votes">
                                         Recent Votes
-	            	    	        </DropdownItem>
+	            	    	        </Dropdown.Item>
                                 </Link>
-	            	    	</DropdownMenu>
-	            	    </UncontrolledDropdown>
-	            	    </NavItem>
-	            	    <NavItem>
-	            	    	<Input
+	            	    	</Dropdown.Menu>
+	            	    </Dropdown>
+	            	    </Nav.Item>
+	            	    <Nav.Item>
+	            	    	<FormControl
 	            	    	    type="text"
 	            	    	    autoComplete="off"
 	            	    	    name="search-bar"
 	            	    	    onKeyUp={handleChange}
 	            	    	    placeholder="Search..."
 	            	    	/>
-	            	    </NavItem>
+	            	    </Nav.Item>
 	            	</Nav>
 	            </Navbar>
 		    </div>

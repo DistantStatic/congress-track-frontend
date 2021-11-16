@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import {
-    List,
     Table,
     Button,
     Modal,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
     ListGroup,
-    ListGroupItem,
-    ListGroupItemHeading,
-} from "reactstrap";
+} from "react-bootstrap";
 
 export default class MemberModal extends Component {
     constructor(props){
@@ -51,21 +45,21 @@ export default class MemberModal extends Component {
     }
 
     render() {
-        const {toggle} = this.props
+        const { show, hide } = this.props
         return (
-            <Modal className="member-modal"isOpen={true} toggle={toggle}>
-                <ModalHeader toggle={toggle} className={this.state.currentMember.roles[0].party + "party"}>
+            <Modal className="member-modal" show={show} onHide={hide}>
+                <Modal.Header className={this.state.currentMember.roles[0].party + "party"}>
                     {this.state.currentMember.roles[0].title + " " + this.state.currentMember.first_name + " " + this.state.currentMember.last_name + " | " + this.state.currentMember.roles[0].party + " - " + this.state.currentMember.roles[0].state}
-                </ModalHeader>
-                <ModalBody>
+                </Modal.Header>
+                <Modal.Body>
                     <ListGroup>
                         {this.state.currentMember.roles[0].leadership_role != null ? 
-                        <ListGroupItem>
-                            <ListGroupItemHeading>{this.state.currentMember.roles[0].leadership_role}</ListGroupItemHeading>
-                        </ListGroupItem>
+                        <ListGroup.Item>
+                            <h3>{this.state.currentMember.roles[0].leadership_role}</h3>
+                        </ListGroup.Item>
                         : null}
-                        <ListGroupItem>
-                            <ListGroupItemHeading>Actions in congress: </ListGroupItemHeading>
+                        <ListGroup.Item>
+                            <h3>Actions in congress: </h3>
                             <div className="holds-table">
                                 <Table>
                                     <thead>
@@ -86,21 +80,21 @@ export default class MemberModal extends Component {
                                     </tbody>
                                 </Table>
                             </div>
-                        </ListGroupItem>
-                        {this.state.currentMember.roles[0].committees.length > 0 ? <ListGroupItem>
-                            <ListGroupItemHeading>Committees: </ListGroupItemHeading>
-                            <List>
+                        </ListGroup.Item>
+                        {this.state.currentMember.roles[0].committees.length > 0 ? <ListGroup.Item>
+                            <h3>Committees: </h3>
+                            <ListGroup>
                                 {this.makeCommitteeList(this.state.currentMember.roles[0].committees)}
-                            </List>
-                        </ListGroupItem> : null}
+                            </ListGroup>
+                        </ListGroup.Item> : null}
                     </ListGroup>
-                </ModalBody>
-                <ModalFooter>
+                </Modal.Body>
+                <Modal.Footer>
                     {this.state.currentMember.url != null ? <Button color="secondary" href={this.state.currentMember.url} target="_blank">Gov Page</Button> : null}
                     {this.state.currentMember.facebook_account != null ? <Button color="primary" href={"https://www.facebook.com/" + this.state.currentMember.facebook_account} target="_blank">Facebook</Button> : null}
                     {this.state.currentMember.twitter_account != null ? <Button color="info" href={"https://www.twitter.com/" + this.state.currentMember.twitter_account} target="_blank">Twitter</Button> : null}
                     {this.state.currentMember.youtube_account != null ? <Button color="danger" href={"https://www.youtube.com/" + this.state.currentMember.youtube_account} target="_blank">YouTube</Button> : null}
-                </ModalFooter>
+                </Modal.Footer>
             </Modal>
         )
     }

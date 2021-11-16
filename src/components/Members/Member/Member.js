@@ -3,12 +3,10 @@ import {
   Button,
   Col,
   Card,
-  CardBody,
-  CardFooter,
   Container,
   ListGroup,
   ListGroupItem,
-} from "reactstrap";
+} from "react-bootstrap";
 import styles from './Member.module.css';
 
 export default class Member extends Component {
@@ -23,7 +21,7 @@ export default class Member extends Component {
             <h1 className="card-title">{member.first_name}</h1>
             <h1 className="card-title">{member.last_name}</h1>
           </div>            
-          <CardBody className="my-body">
+          <Card.Body className="my-body">
             <Container>
               <ListGroup variant="flush">
                 <ListGroupItem className={styles.custList}>
@@ -40,10 +38,10 @@ export default class Member extends Component {
                 </ListGroupItem>
               </ListGroup>
             </Container>
-          </CardBody>
-          <CardFooter>
+          </Card.Body>
+          <Card.Footer>
             <Button onClick={this.props.setActiveMember.bind(this, member)}>Find Out More</Button>
-          </CardFooter>
+          </Card.Footer>
         </Card>
       </Col>
     )

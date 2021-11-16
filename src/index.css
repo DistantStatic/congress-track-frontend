@@ -8,7 +8,7 @@ body {
 }
 
 .main-display {
-  height: 75vh;
+  height: 70vh;
   overflow-y:scroll;
   margin-left: 2em!important;
   margin-right: 2em!important;
@@ -94,7 +94,6 @@ body {
 
 .card {
   margin-bottom: 1em;
-  box-shadow: 0 2px 2px #ccc;
 }
 
 .card-header{
@@ -148,7 +147,7 @@ body {
 }
 
 .footer {
-  margin-top:2em;
+  color:rgba(255, 255, 255, 0.6);
   margin-left:auto;
   margin-right:auto;
   text-align: center;

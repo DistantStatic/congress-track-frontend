@@ -3,14 +3,8 @@ import { backgrounds } from '../components/Votes/VoteCard/VoteCard'
 import {
     Button,
     Modal,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
     ListGroup,
-    ListGroupItem,
-    ListGroupItemHeading,
-    ListGroupItemText,
-} from "reactstrap";
+} from "react-bootstrap";
 import VotePie from '../components/Graphs/Votes/VotePie';
 
 export default class VoteModal extends Component {
@@ -76,45 +70,44 @@ export default class VoteModal extends Component {
   }
   
   render() {
-    const {vote, toggle} = this.props
-    console.log(vote);
+    const {vote, show, hide} = this.props
     return (
-      <Modal className="vote-modal" isOpen={true} toggle={toggle}>
-        <ModalHeader className={"" + backgrounds[vote.result]}  toggle={toggle} >
+      <Modal className="vote-modal" show={show} onHide={hide}>
+        <Modal.Header className={"" + backgrounds[vote.result]} >
           VOTE: {vote.congress + " | " + vote.session + " - " + vote.roll_call + "  -  " + vote.question}
-        </ModalHeader>
-        <ModalBody>
+        </Modal.Header>
+        <Modal.Body>
         <VotePie vote={vote}/>
         <ListGroup className="list-group-flush">
-            <ListGroupItem>
-                <ListGroupItemHeading>
+            <ListGroup.Item>
+                <h3>
                       Details
-                </ListGroupItemHeading>
-                <ListGroupItemText>
+                </h3>
+                <p>
                     {"Date: " + vote.date + " - " + vote.time}
-                </ListGroupItemText>
-                <ListGroupItemText>
+                </p>
+                <p>
                     {"Result: " + vote.result}
-                </ListGroupItemText>
-            </ListGroupItem>
-            <ListGroupItem>
-                <ListGroupItemHeading>
+                </p>
+            </ListGroup.Item>
+            <ListGroup.Item>
+                <h3>
                     Text
-                </ListGroupItemHeading>
-                <ListGroupItemText>
+                </h3>
+                <p>
                 {vote.description.length > 1 ? vote.description : vote.question_text}
-                </ListGroupItemText>
-            </ListGroupItem>
+                </p>
+            </ListGroup.Item>
         </ListGroup>
-        </ModalBody>
-        <ModalFooter>
+        </Modal.Body>
+        <Modal.Footer>
         <Button color="primary" href={vote.url}>
           Go to vote page
         </Button>
-        <Button onClick={toggle}>
+        <Button onClick={hide}>
           Cancel
         </Button>
-        </ModalFooter>
+        </Modal.Footer>
       </Modal>
     )
   }

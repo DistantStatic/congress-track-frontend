@@ -2,14 +2,8 @@ import React, { Component } from 'react';
 import {
     Button,
     Modal,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
     ListGroup,
-    ListGroupItem,
-    ListGroupItemHeading,
-    ListGroupItemText
-} from "reactstrap";
+} from "react-bootstrap";
 
 export default class BillModal extends Component {
     constructor(props){
@@ -25,44 +19,44 @@ export default class BillModal extends Component {
     }
 
     render = () => {
-        const {toggle} = this.props
+        const { show, hide } = this.props
         return (
-            <Modal isOpen={true} toggle={toggle}>
-                <ModalHeader className={this.state.currentBill.sponsor_party + "party"} toggle={toggle}>
+            <Modal show={show} onHide={hide}>
+                <Modal.Header className={this.state.currentBill.sponsor_party + "party"}>
                     {this.state.currentBill.bill_id.toUpperCase() + " | " + (this.state.currentBill.active ? "Active" : "Inactive")}
-                </ModalHeader>
-                <ModalBody>
+                </Modal.Header>
+                <Modal.Body>
                     <ListGroup>
-                        <ListGroupItem>
-                            <ListGroupItemHeading>Title: </ListGroupItemHeading>
-                            <ListGroupItemText>{this.state.currentBill.title}</ListGroupItemText>
-                        </ListGroupItem>
-                        <ListGroupItem>
-                            <ListGroupItemHeading>Important Dates: </ListGroupItemHeading> 
-                            <ListGroupItemText><i>Introduced: </i>{this.state.currentBill.introduced_date}</ListGroupItemText>
-                            <ListGroupItemText><i>Lastest Action: </i>{this.state.currentBill.latest_major_action_date}</ListGroupItemText>
-                            <ListGroupItemText>{this.state.currentBill.latest_major_action}</ListGroupItemText>
-                        </ListGroupItem>
-                        <ListGroupItem>
-                            <ListGroupItemHeading>Sponsor(s): </ListGroupItemHeading>
-                            <ListGroupItemText>{this.state.currentBill.sponsor_title + " " + this.state.currentBill.sponsor + " + " + this.state.currentBill.cosponsors}</ListGroupItemText>
+                        <ListGroup.Item>
+                            <h3>Title: </h3>
+                            <span>{this.state.currentBill.title}</span>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <h3>Important Dates: </h3> 
+                            <p><i>Introduced: </i>{this.state.currentBill.introduced_date}</p>
+                            <p><i>Lastest Action: </i>{this.state.currentBill.latest_major_action_date}</p>
+                            <p>{this.state.currentBill.latest_major_action}</p>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <h3>Sponsor(s): </h3>
+                            <p>{this.state.currentBill.sponsor_title + " " + this.state.currentBill.sponsor + " + " + this.state.currentBill.cosponsors}</p>
                             { this.state.currentBill.cosponsors > 0 ? (
                                "D: " + (this.state.currentBill.cosponsors_by_party.D > 0 ? (this.state.currentBill.cosponsors_by_party.D): "0") +  
                                " | " + 
                                "R: " + (this.state.currentBill.cosponsors_by_party.R > 0 ? (this.state.currentBill.cosponsors_by_party.R): "0"))
                                : null 
                             }
-                        </ListGroupItem>
+                        </ListGroup.Item>
                     </ListGroup>
-                </ModalBody>
-                <ModalFooter>
+                </Modal.Body>
+                <Modal.Footer>
                     <Button color="primary" href={this.state.currentBill.congressdotgov_url}>
                         Go to bill page
                     </Button>
-                    <Button onClick={toggle}>
+                    <Button onClick={hide}>
                         Cancel
                     </Button>
-                </ModalFooter>
+                </Modal.Footer>
             </Modal>
         )
     }
