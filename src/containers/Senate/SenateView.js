@@ -49,8 +49,8 @@ class Senate extends Component {
         })
     }
 
-    toggleMemberModal = () => {
-        this.setState({memberModal: !this.state.memberModal})
+    hideMemberModal = () => {
+        this.setState({memberModal: false})
     }
 
     searchSenateMember = (a) => {
@@ -70,15 +70,16 @@ class Senate extends Component {
     render() {
         return (
             <>
-                {!this.state.senateMembers.length ? <Loading /> : null}
+                {this.state.loading ? <Loading /> : null}
                 <Navigation 
                     page="Senate"
                     search={this.searchSenateMember}
                     />
                 { this.state.memberModal ? 
-			    <MemberModal 
+			    <MemberModal
+                    show={this.state.memberModal}
 			        currentMember={this.state.activeMember} 
-		            toggle={this.toggleMemberModal}
+		            hide={this.hideMemberModal}
 			        /> 
 			    : null }
                 <div className="main-display scroll-test row">

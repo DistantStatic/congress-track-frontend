@@ -3,14 +3,9 @@ import {
     Button,
     Col,
     Card,
-    CardBody,
-    CardFooter,
     Container,
     ListGroup,
-    ListGroupItem,
-    ListGroupItemHeading,
-    ListGroupItemText
-} from "reactstrap";
+} from "react-bootstrap";
 import styles from './VoteCard.module.css';
 
 export const backgrounds = {
@@ -49,36 +44,36 @@ export default class Vote extends Component {
       <Col sm="12" md="6" lg="4" xl="2">
         <Card className={styles.card}>
           <div className={"card-header " + backgrounds[vote.result]}>{vote.congress + " | " + vote.session + " - " + vote.roll_call}</div>          
-          <CardBody className="my-body">
+          <Card.Body className="my-body">
             <Container>
               <ListGroup className="list-group-flush">
-                <ListGroupItem className={styles.custList}>
-                  <ListGroupItemHeading>
+                <ListGroup.Item className={styles.custList}>
+                  <h3>
                   {vote.description.length > 1 ? this.truncate(vote.description) : this.truncate(vote.question_text)}
-                  </ListGroupItemHeading>
-                      { this.hasData(vote.bill) ? <ListGroupItemText>{vote.bill.number}</ListGroupItemText> : null }
-                      { this.hasData(vote.amendment) ? <ListGroupItemText>{vote.amendment.number}</ListGroupItemText> : null }
-                      <ListGroupItemText>{vote.question}</ListGroupItemText>
-                </ListGroupItem>
-                <ListGroupItem className={styles.custList}>
-                  <ListGroupItemHeading>
+                  </h3>
+                      { this.hasData(vote.bill) ? <p>{vote.bill.number}</p> : null }
+                      { this.hasData(vote.amendment) ? <p>{vote.amendment.number}</p> : null }
+                      <p>{vote.question}</p>
+                </ListGroup.Item>
+                <ListGroup.Item className={styles.custList}>
+                  <h3>
                     {"Total Votes"}
-                  </ListGroupItemHeading>
+                  </h3>
                   <p>{"Yes: " + vote.total.yes + " | No: " + vote.total.no}</p> 
                   <p>{"Present: " + vote.total.present + " | Not Voting: " + vote.total.not_voting}</p>
-                </ListGroupItem>
-                <ListGroupItem className={styles.custList}>
+                </ListGroup.Item>
+                <ListGroup.Item className={styles.custList}>
                   {"Date: " + vote.date + " - " + vote.time}
-                </ListGroupItem>
-                <ListGroupItem className={styles.custList}>
+                </ListGroup.Item>
+                <ListGroup.Item className={styles.custList}>
                   {"Result: " + vote.result}
-                </ListGroupItem>
+                </ListGroup.Item>
               </ListGroup>
             </Container>
-          </CardBody>
-          <CardFooter>
+          </Card.Body>
+          <Card.Footer>
             <Button onClick={this.props.setActiveVote.bind(this, vote)}>Find Out More</Button>
-          </CardFooter>
+          </Card.Footer>
         </Card>
       </Col>
     )

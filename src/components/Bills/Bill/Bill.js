@@ -3,13 +3,10 @@ import {
     Button,
     Col,
     Card,
-    CardBody,
-    CardFooter,
-    CardTitle,
     Container,
     ListGroup,
     ListGroupItem,
-} from "reactstrap";
+} from "react-bootstrap";
 import styles from './Bill.module.css';
 
 export default class Bill extends Component {
@@ -24,10 +21,10 @@ export default class Bill extends Component {
       <Col sm="12" md="6" lg="4" xl="2">
         <Card className={styles.card}>
           <div className={"card-header " + bill.sponsor_party + "party"}>{bill.bill_id.toUpperCase()}</div>
-          <CardTitle>
-            <h3>{this.truncate(bill.short_title)}</h3>
-          </CardTitle>            
-          <CardBody className="my-body">
+          <Card.Title>
+            <span>{this.truncate(bill.short_title)}</span>
+          </Card.Title>            
+          <Card.Body className="my-body">
             <Container>
               <h5 className="card-title">{"Sponsor(s): " + bill.sponsor_name + " + " + bill.cosponsors}</h5>
               <ListGroup variant="flush">
@@ -35,10 +32,10 @@ export default class Bill extends Component {
                 <ListGroupItem className={styles.custList}>{"Last Major Action Date: " + bill.latest_major_action_date}</ListGroupItem>
               </ListGroup>
             </Container>
-          </CardBody>
-          <CardFooter>
+          </Card.Body>
+          <Card.Footer>
             <Button onClick={this.props.setActiveBill.bind(this, bill)}>Find Out More</Button>
-          </CardFooter>
+          </Card.Footer>
         </Card>
       </Col>
     )

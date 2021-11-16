@@ -50,8 +50,8 @@ class BillsView extends Component {
 		})
 	}
 
-	toggleBillModal = () => {
-		this.setState({billModal: !this.state.billModal})
+	hideBillModal = () => {
+		this.setState({billModal: false})
 	}
   
 	searchBills = (a) => {
@@ -69,15 +69,16 @@ class BillsView extends Component {
     render() {
         return (
 			<>
-				{!this.state.bills.length ? <Loading /> : null}
+				{this.state.loading ? <Loading /> : null}
 				<Navigation
 					page="Bills"
 					search={this.searchBills}
 					/>
 				{ this.state.billModal ? 
 				<BillModal 
-					currentBill={this.state.activeBill} 
-					toggle={this.toggleBillModal}
+					currentBill={this.state.activeBill}
+					show={this.state.billModal}
+					hide={this.hideBillModal}
 					/> 
 				: null }
                 <div className="main-display scroll-test row">
