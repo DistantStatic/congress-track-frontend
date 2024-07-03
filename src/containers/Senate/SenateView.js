@@ -54,13 +54,11 @@ class Senate extends Component {
     }
 
     searchSenateMember = (a) => {
-        console.log(a);
         const search = this.state.searchSenate;
         search.addDocuments(this.state.senateMembers)
         search.addIndex("first_name")
         search.addIndex("last_name")
         let result = search.search(a)
-        console.log(result);
         if (result.length < 1 ) {
             result = this.state.senateMembers
         }
