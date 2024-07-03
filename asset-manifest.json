@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/congress-track-frontend/static/css/main.68689c9b.css",
-    "main.js": "/congress-track-frontend/static/js/main.8b430c2e.js",
-    "static/js/488.c507a1f5.chunk.js": "/congress-track-frontend/static/js/488.c507a1f5.chunk.js",
+    "main.css": "/congress-track-frontend/static/css/main.1f5acedf.css",
+    "main.js": "/congress-track-frontend/static/js/main.aa080df5.js",
+    "static/js/462.e258cce5.chunk.js": "/congress-track-frontend/static/js/462.e258cce5.chunk.js",
     "static/media/background.jpg": "/congress-track-frontend/static/media/background.2e1d17cfe28e7c964b48.jpg",
     "index.html": "/congress-track-frontend/index.html",
-    "main.68689c9b.css.map": "/congress-track-frontend/static/css/main.68689c9b.css.map",
-    "main.8b430c2e.js.map": "/congress-track-frontend/static/js/main.8b430c2e.js.map",
-    "488.c507a1f5.chunk.js.map": "/congress-track-frontend/static/js/488.c507a1f5.chunk.js.map"
+    "main.1f5acedf.css.map": "/congress-track-frontend/static/css/main.1f5acedf.css.map",
+    "main.aa080df5.js.map": "/congress-track-frontend/static/js/main.aa080df5.js.map",
+    "462.e258cce5.chunk.js.map": "/congress-track-frontend/static/js/462.e258cce5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.68689c9b.css",
-    "static/js/main.8b430c2e.js"
+    "static/css/main.1f5acedf.css",
+    "static/js/main.aa080df5.js"
   ]
 }
