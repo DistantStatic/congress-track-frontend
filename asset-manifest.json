@@ -1,26 +1,16 @@
 {
   "files": {
-    "main.css": "/congress-track-frontend/static/css/main.c24f7006.chunk.css",
-    "main.js": "/congress-track-frontend/static/js/main.37dda61e.chunk.js",
-    "main.js.map": "/congress-track-frontend/static/js/main.37dda61e.chunk.js.map",
-    "runtime-main.js": "/congress-track-frontend/static/js/runtime-main.636d95b7.js",
-    "runtime-main.js.map": "/congress-track-frontend/static/js/runtime-main.636d95b7.js.map",
-    "static/css/2.bd932d36.chunk.css": "/congress-track-frontend/static/css/2.bd932d36.chunk.css",
-    "static/js/2.001fd953.chunk.js": "/congress-track-frontend/static/js/2.001fd953.chunk.js",
-    "static/js/2.001fd953.chunk.js.map": "/congress-track-frontend/static/js/2.001fd953.chunk.js.map",
-    "static/js/3.87b8a49f.chunk.js": "/congress-track-frontend/static/js/3.87b8a49f.chunk.js",
-    "static/js/3.87b8a49f.chunk.js.map": "/congress-track-frontend/static/js/3.87b8a49f.chunk.js.map",
+    "main.css": "/congress-track-frontend/static/css/main.68689c9b.css",
+    "main.js": "/congress-track-frontend/static/js/main.8b430c2e.js",
+    "static/js/488.c507a1f5.chunk.js": "/congress-track-frontend/static/js/488.c507a1f5.chunk.js",
+    "static/media/background.jpg": "/congress-track-frontend/static/media/background.2e1d17cfe28e7c964b48.jpg",
     "index.html": "/congress-track-frontend/index.html",
-    "static/css/2.bd932d36.chunk.css.map": "/congress-track-frontend/static/css/2.bd932d36.chunk.css.map",
-    "static/css/main.c24f7006.chunk.css.map": "/congress-track-frontend/static/css/main.c24f7006.chunk.css.map",
-    "static/js/2.001fd953.chunk.js.LICENSE.txt": "/congress-track-frontend/static/js/2.001fd953.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/congress-track-frontend/static/media/background.2e1d17cf.jpg"
+    "main.68689c9b.css.map": "/congress-track-frontend/static/css/main.68689c9b.css.map",
+    "main.8b430c2e.js.map": "/congress-track-frontend/static/js/main.8b430c2e.js.map",
+    "488.c507a1f5.chunk.js.map": "/congress-track-frontend/static/js/488.c507a1f5.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.636d95b7.js",
-    "static/css/2.bd932d36.chunk.css",
-    "static/js/2.001fd953.chunk.js",
-    "static/css/main.c24f7006.chunk.css",
-    "static/js/main.37dda61e.chunk.js"
+    "static/css/main.68689c9b.css",
+    "static/js/main.8b430c2e.js"
   ]
 }
